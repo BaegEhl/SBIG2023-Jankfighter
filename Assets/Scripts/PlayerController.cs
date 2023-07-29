@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float legSpeed;
     [SerializeField] private float armSpeed;
     [SerializeField] private int playerAttackState;
+    [SerializeField] private int activeWeaponLeft;
+    [SerializeField] private int activeWeaponRight;
     public static PlayerController instance;
     // Start is called before the first frame update
     void Start()
@@ -56,12 +58,12 @@ public class PlayerController : MonoBehaviour
     void PlayerAttack(){
         switch(playerAttackState){
             case 1:
-            if(Input.GetMouseButtonDown(0)){StartCoroutine(weapons[0].UseWeapon());}
-            if(Input.GetMouseButtonDown(1)){StartCoroutine(weapons[0].UseWeaponAlt());}
+            if(Input.GetMouseButtonDown(0)){StartCoroutine(weapons[activeWeaponRight].UseWeapon());}
+            if(Input.GetMouseButtonDown(1)){StartCoroutine(weapons[activeWeaponRight].UseWeaponAlt());}
             break;
             case 2:
-            if(Input.GetMouseButtonDown(0)){StartCoroutine(weapons[1].UseWeapon());}
-            if(Input.GetMouseButtonDown(1)){StartCoroutine(weapons[1].UseWeaponAlt());}
+            if(Input.GetMouseButtonDown(0)){StartCoroutine(weapons[activeWeaponLeft].UseWeapon());}
+            if(Input.GetMouseButtonDown(1)){StartCoroutine(weapons[activeWeaponLeft].UseWeaponAlt());}
             break;
         }
     }
