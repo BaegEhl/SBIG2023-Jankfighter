@@ -38,12 +38,12 @@ public class PlayerController : MonoBehaviour
     void PlayerArms(){
         switch(playerAttackState){
             case 1:
-            if(Input.GetMouseButton(0)){limbRBs[2].AddTorque(Time.fixedDeltaTime * armSpeed);}
-            if(Input.GetMouseButton(1)){limbRBs[2].AddTorque(-Time.fixedDeltaTime * armSpeed);}
+            if(Input.GetKey(KeyCode.R)){limbRBs[2].AddTorque(Time.fixedDeltaTime * armSpeed);}
+            if(Input.GetKey(KeyCode.F)){limbRBs[2].AddTorque(-Time.fixedDeltaTime * armSpeed);}
             break;
             case 2:
-            if(Input.GetMouseButton(0)){limbRBs[3].AddTorque(Time.fixedDeltaTime * armSpeed);}
-            if(Input.GetMouseButton(1)){limbRBs[3].AddTorque(-Time.fixedDeltaTime * armSpeed);}
+            if(Input.GetKey(KeyCode.R)){limbRBs[3].AddTorque(Time.fixedDeltaTime * armSpeed);}
+            if(Input.GetKey(KeyCode.F)){limbRBs[3].AddTorque(-Time.fixedDeltaTime * armSpeed);}
             break;
         }
     }
@@ -51,17 +51,15 @@ public class PlayerController : MonoBehaviour
     void WeaponSwap(){
         if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)){playerAttackState = 1;}
         if(Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)){playerAttackState = 2;}
-        if(Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3)){playerAttackState = 3;}
-        if(Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4)){playerAttackState = 4;}
     }
     //use the player's weapons
     void PlayerAttack(){
         switch(playerAttackState){
-            case 3:
+            case 1:
             if(Input.GetMouseButtonDown(0)){StartCoroutine(weapons[0].UseWeapon());}
             if(Input.GetMouseButtonDown(1)){StartCoroutine(weapons[0].UseWeaponAlt());}
             break;
-            case 4:
+            case 2:
             if(Input.GetMouseButtonDown(0)){StartCoroutine(weapons[1].UseWeapon());}
             if(Input.GetMouseButtonDown(1)){StartCoroutine(weapons[1].UseWeaponAlt());}
             break;
