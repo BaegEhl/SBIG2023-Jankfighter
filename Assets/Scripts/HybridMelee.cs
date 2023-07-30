@@ -7,7 +7,7 @@ public class HybridMelee : Weapon
     public override IEnumerator UseWeapon()
     {
         while(Input.GetMouseButton(0)){
-            weaponRB.AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position) * Time.fixedDeltaTime * weaponForce);
+            weaponRB.AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * Time.fixedDeltaTime * weaponForce);
             yield return new WaitForFixedUpdate();
         }
     }

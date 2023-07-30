@@ -8,7 +8,7 @@ public class ThrustMelee : Weapon
     public override IEnumerator UseWeapon()
     {
         while(Input.GetMouseButton(0)){
-            weaponRB.AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position) * Time.fixedDeltaTime * weaponForce);
+            weaponRB.AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * Time.fixedDeltaTime * weaponForce);
             yield return new WaitForFixedUpdate();
         }
     }
@@ -21,7 +21,7 @@ public class ThrustMelee : Weapon
         }
         float timer = chargeDuration;
         while(timer > 0){
-            weaponRB.AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position) * charge * weaponForce * altfireMultiplier * Time.fixedDeltaTime / chargeDuration);
+            weaponRB.AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * charge * weaponForce * altfireMultiplier * Time.fixedDeltaTime / chargeDuration);
             timer -= Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
