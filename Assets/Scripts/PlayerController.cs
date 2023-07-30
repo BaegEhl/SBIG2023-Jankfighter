@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     {
         WeaponSwap();
         PlayerAttack();
+        PlayerStance();
     }
     void FixedUpdate(){
         MovePlayer();
@@ -66,5 +67,11 @@ public class PlayerController : MonoBehaviour
             if(Input.GetMouseButtonDown(1)){StartCoroutine(weapons[activeWeaponLeft].UseWeaponAlt());}
             break;
         }
+    }
+    void PlayerStance(){
+        if(Input.GetKeyDown(KeyCode.W)){limbRBs[4].mass *= 2; limbRBs[5].mass *= 2;}
+        if(Input.GetKeyUp(KeyCode.W)){limbRBs[4].mass /= 2; limbRBs[5].mass /= 2;}
+        if(Input.GetKeyDown(KeyCode.S)){limbRBs[4].gravityScale *= -2; limbRBs[5].gravityScale *= -2;}
+        if(Input.GetKeyUp(KeyCode.S)){limbRBs[4].gravityScale /= -2; limbRBs[5].gravityScale /= -2;}
     }
 }

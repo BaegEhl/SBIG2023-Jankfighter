@@ -690,11 +690,15 @@ MonoBehaviour:
   - {fileID: 1982432273}
   - {fileID: 1150986483}
   - {fileID: 2062710478}
+  - {fileID: 976994268}
+  - {fileID: 1511332184}
   limbRBs:
   - {fileID: 2057807502}
   - {fileID: 1982432277}
   - {fileID: 1150986484}
   - {fileID: 2062710482}
+  - {fileID: 976994270}
+  - {fileID: 1511332186}
   weapons:
   - {fileID: 1516707049}
   - {fileID: 257026712}
@@ -703,7 +707,7 @@ MonoBehaviour:
   armSpeed: 500
   playerAttackState: 1
   activeWeaponLeft: 1
-  activeWeaponRight: 2
+  activeWeaponRight: 0
 --- !u!233 &976994274
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -1069,7 +1073,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &1516707043
 Rigidbody2D:
   serializedVersion: 4
@@ -1220,8 +1224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a7ad7020e47d534483f6afbe6956fa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponForce: 50
-  altfireMultiplier: 2
+  weaponForce: 1000
+  altfireMultiplier: 0.1
   weaponRB: {fileID: 1516707043}
 --- !u!1 &1633044644
 GameObject:
