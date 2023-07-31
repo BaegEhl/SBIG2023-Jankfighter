@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ActiveHitbox : MonoBehaviour
 {
-    public int affiliation{get;}
+    [SerializeField] private int affiliation;
+    public int Affiliation{get{return affiliation;}}
     [SerializeField] private float maxHP;
     [SerializeField] private float HP;
     [SerializeField] private Rigidbody2D[] ragdollParts;
@@ -12,8 +13,8 @@ public class ActiveHitbox : MonoBehaviour
     [SerializeField] private float[] attachedPartResistances;
     [SerializeField] private ActiveHitbox[] attachedHitpointPools;
     void OnCollisionEnter2D(Collision2D other){
-        if(other.transform.GetComponent<AttackHitbox>() && other.transform.GetComponent<AttackHitbox>().affiliation != affiliation){
-            float baseDamage = other.transform.GetComponent<AttackHitbox>().baseDamage;
+        if(other.transform.GetComponent<AttackHitbox>() && other.transform.GetComponent<AttackHitbox>().Affiliation != affiliation){
+            float baseDamage = other.transform.GetComponent<AttackHitbox>().BaseDamage;
             float force = other.transform.GetComponent<Rigidbody2D>().mass * other.relativeVelocity.magnitude;
             Debug.Log(force + " force");
             takeDamage(baseDamage * force);

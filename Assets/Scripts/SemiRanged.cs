@@ -5,6 +5,7 @@ using UnityEngine;
 public class SemiRanged : Weapon
 {
     [SerializeField] private float recoilFactor;
+    [SerializeField] private float kickFactor;
     [SerializeField] private int maxAmmo;
     [SerializeField] private int reloadAmount;
     [SerializeField] private int projectileCount;
@@ -16,7 +17,9 @@ public class SemiRanged : Weapon
         if(ammo > 0 && !isReloading){
             for(int i = 0; i < projectileCount; i++){
                 weaponRB.AddForce(transform.right.normalized * -weaponForce * recoilFactor);
-                weaponRB.AddTorque(weaponForce * recoilFactor * Random.Range(-0.25f,0.25f));
+                weaponRB.AddTorque(weaponForce * recoilFactor * Random.Range(-kickFactor,kickFactor));
+                GameObject bullet = Instantiate(projectilePrefab,transform.position,transform.rotation);
+                bullet.GetComponent<Rigidbody2D>().AddForce(transform.right.normalized * weaponForce);
                 ammo--;
             }
         }

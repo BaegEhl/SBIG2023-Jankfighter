@@ -5,6 +5,7 @@ using UnityEngine;
 public class AutoRanged : Weapon
 {
     [SerializeField] private float recoilFactor;
+    [SerializeField] private float kickFactor;
     [SerializeField] private int maxAmmo;
     [SerializeField] private float fireRate;
     [SerializeField] private float reloadTime;
@@ -16,7 +17,9 @@ public class AutoRanged : Weapon
         while(Input.GetMouseButton(0)){
             if(ammo > 0){
                 weaponRB.AddForce(transform.right.normalized * -weaponForce * recoilFactor);
-                weaponRB.AddTorque(weaponForce * recoilFactor * Random.Range(-0.25f,0.25f));
+                weaponRB.AddTorque(weaponForce * recoilFactor * Random.Range(-kickFactor,kickFactor));
+                GameObject bullet = Instantiate(projectilePrefab,transform.position,transform.rotation);
+                bullet.GetComponent<Rigidbody2D>().AddForce(transform.right.normalized * weaponForce);
                 ammo--;
                 timer = 0;
                 yield return new WaitForSeconds(fireRate);

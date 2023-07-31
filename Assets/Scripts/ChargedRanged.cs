@@ -15,6 +15,8 @@ public class ChargedRanged : Weapon
         }
         weaponRB.AddForce(transform.right.normalized * -weaponForce * recoilFactor * timer);
         weaponRB.AddTorque(weaponForce * recoilFactor * Random.Range(-0.25f,0.25f) * timer);
+        GameObject bullet = Instantiate(projectilePrefab,transform.position,transform.rotation);
+        bullet.GetComponent<Rigidbody2D>().AddForce(transform.right.normalized * weaponForce * timer);
     }
     public override IEnumerator UseWeaponAlt()
     {
