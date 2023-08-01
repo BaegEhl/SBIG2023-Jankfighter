@@ -12,6 +12,7 @@ public class SemiRanged : Weapon
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private bool playerWeapon;
     [SerializeField] private float gravityFactor;
+    [SerializeField] private float spread;
     private int ammo = 0;
     private bool isReloading = false;
     public override IEnumerator UseWeapon()
@@ -21,7 +22,8 @@ public class SemiRanged : Weapon
                 weaponRB.AddForce(transform.right.normalized * -weaponForce * recoilFactor);
                 weaponRB.AddTorque(weaponForce * recoilFactor * Random.Range(-kickFactor,kickFactor));
                 GameObject bullet = Instantiate(projectilePrefab,transform.position,transform.rotation);
-                bullet.GetComponent<Rigidbody2D>().AddForce(transform.right.normalized * weaponForce);
+                bullet.transform.Rotate(new Vector3(0,0,Random.Range(-spread,spread)));
+                bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right.normalized * weaponForce * Random.Range(1 - (spread / 180), 1 + (spread / 180)));
                 ammo--;
             }
         }

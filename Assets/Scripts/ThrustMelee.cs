@@ -5,11 +5,17 @@ using UnityEngine;
 public class ThrustMelee : Weapon
 {
     [SerializeField] private float chargeDuration;
+    [SerializeField] private bool playerWeapon;
     public override IEnumerator UseWeapon()
     {
-        while(Input.GetMouseButton(0)){
-            weaponRB.AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * Time.fixedDeltaTime * weaponForce);
-            yield return new WaitForFixedUpdate();
+        if(playerWeapon){
+            while(Input.GetMouseButton(0)){
+                weaponRB.AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * Time.fixedDeltaTime * weaponForce);
+                yield return new WaitForFixedUpdate();
+            }
+        }
+        else{
+            weaponRB.AddForce(((PlayerController.instance.transform.position) - transform.position).normalized * Time.fixedDeltaTime * weaponForce);
         }
     }
     public override IEnumerator UseWeaponAlt()

@@ -10,7 +10,7 @@ public class AttackHitbox : MonoBehaviour
     public int Affiliation{get{return affiliation;}}
     [SerializeField] private float impactTimer;
     void OnCollisionEnter2D(Collision2D other){
-        if(impactTimer >= 0 && (!other.transform.GetComponent<ActiveHitbox>() || other.transform.GetComponent<ActiveHitbox>().Affiliation != affiliation)){
+        if(impactTimer >= 0 /*&& (!other.transform.GetComponent<ActiveHitbox>() || other.transform.GetComponent<ActiveHitbox>().Affiliation != affiliation)*/){
             StartCoroutine(startImpactTimer());
         }
     }

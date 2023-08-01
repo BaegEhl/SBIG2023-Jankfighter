@@ -19,12 +19,12 @@ public class ActiveHitbox : MonoBehaviour
         if(other.transform.GetComponent<AttackHitbox>() && other.transform.GetComponent<AttackHitbox>().Affiliation != affiliation){
             float baseDamage = other.transform.GetComponent<AttackHitbox>().BaseDamage;
             float force = other.transform.GetComponent<Rigidbody2D>().mass * other.relativeVelocity.magnitude;
-            Debug.Log(force + " force");
+            //Debug.Log(force + " force");
             StartCoroutine(takeDamage(baseDamage * force,other));
             for(int i = 0; i < attachedHitpointPools.Length; i++){
                 StartCoroutine(attachedHitpointPools[i].takeDamage(baseDamage * force * attachedPartResistances[i],other));
             }
-            if(force > ragdollThreshold){
+            if(force > ragdollThreshold && baseDamage > 0){
                 StartCoroutine(ragdollify(force));
             }
         }
@@ -41,27 +41,35 @@ public class ActiveHitbox : MonoBehaviour
                 blood.GetComponent<Rigidbody2D>().AddForce(other.relativeVelocity * bloodSize * Mathf.Max(3, 5 / other.relativeVelocity.magnitude));
                 blood.transform.localScale = new Vector3(bloodSize * 0.05f,bloodSize * 0.05f,bloodSize * 0.05f);
                 bloodAmount--;
+                if(bloodAmount <= 0 && HP < 0){
+                    die();
+                }
                 yield return new WaitForEndOfFrame();
             }
         }
         if(HP < 0){
-            if(gameObject.GetComponent<PlayerController>()){
-                //lmao
-                Application.Quit();
-            }
-            Destroy(gameObject);
+            die();
         }
+    }
+    void die(){
+        if(gameObject.GetComponent<PlayerController>()){
+            //lmao
+            Application.Quit();
+        }
+        Destroy(gameObject);
     }
     public IEnumerator ragdollify(float force){
         float realRagdollHours = force - (ragdollThreshold * gameObject.GetComponent<Rigidbody2D>().mass);
+        Debug.Log("ragdolled");
         foreach(Rigidbody2D rb in ragdollParts){
             rb.gravityScale *= -1;
             rb.angularDrag /= Mathf.Max(realRagdollHours / rb.mass, 1);
         }
-        yield return new WaitForSeconds(realRagdollHours);
+        yield return new WaitForSeconds(Mathf.Min(Mathf.Sqrt(realRagdollHours),15));
         foreach(Rigidbody2D rb in ragdollParts){
             rb.gravityScale /= -1;
             rb.angularDrag *= Mathf.Max(realRagdollHours / rb.mass, 1);
         }
+        Debug.Log("no longer ragdolled");
     }
 }
