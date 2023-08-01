@@ -10,6 +10,8 @@ public class SemiRanged : Weapon
     [SerializeField] private int reloadAmount;
     [SerializeField] private int projectileCount;
     [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private bool playerWeapon;
+    [SerializeField] private float gravityFactor;
     private int ammo = 0;
     private bool isReloading = false;
     public override IEnumerator UseWeapon()
@@ -32,9 +34,14 @@ public class SemiRanged : Weapon
     }
     public override IEnumerator UseWeaponAlt()
     {
-        while(Input.GetMouseButton(1)){
-            weaponRB.AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * Time.fixedDeltaTime * weaponForce * altfireMultiplier);
-            yield return new WaitForFixedUpdate();
+        if(playerWeapon){
+            while(Input.GetMouseButton(1)){
+                weaponRB.AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * Time.fixedDeltaTime * weaponForce * altfireMultiplier);
+                yield return new WaitForFixedUpdate();
+            }
+        }
+        else{
+            weaponRB.AddForce(((PlayerController.instance.transform.position + (Vector3.up * Vector2.Distance(transform.position,PlayerController.instance.transform.position) * gravityFactor)) - transform.position).normalized * Time.fixedDeltaTime * weaponForce * altfireMultiplier);
         }
     }
 }

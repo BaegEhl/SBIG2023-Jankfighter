@@ -5,6 +5,7 @@ using UnityEngine;
 public class ChargedRanged : Weapon
 {
     [SerializeField] private float recoilFactor;
+    [SerializeField] private float kickFactor;
     [SerializeField] private GameObject projectilePrefab;
     public override IEnumerator UseWeapon()
     {
@@ -14,7 +15,7 @@ public class ChargedRanged : Weapon
             yield return new WaitForEndOfFrame();
         }
         weaponRB.AddForce(transform.right.normalized * -weaponForce * recoilFactor * timer);
-        weaponRB.AddTorque(weaponForce * recoilFactor * Random.Range(-0.25f,0.25f) * timer);
+        weaponRB.AddTorque(weaponForce * recoilFactor * Random.Range(-kickFactor,kickFactor) * timer);
         GameObject bullet = Instantiate(projectilePrefab,transform.position,transform.rotation);
         bullet.GetComponent<Rigidbody2D>().AddForce(transform.right.normalized * weaponForce * timer);
     }

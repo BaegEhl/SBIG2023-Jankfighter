@@ -22,7 +22,7 @@ public class ActiveHitbox : MonoBehaviour
                 attachedHitpointPools[i].takeDamage(baseDamage * force * attachedPartResistances[i]);
             }
             if(force > ragdollThreshold){
-
+                StartCoroutine(ragdollify(force));
             }
         }
     }
@@ -39,13 +39,13 @@ public class ActiveHitbox : MonoBehaviour
     public IEnumerator ragdollify(float force){
         float realRagdollHours = force - (ragdollThreshold * gameObject.GetComponent<Rigidbody2D>().mass);
         foreach(Rigidbody2D rb in ragdollParts){
-            rb.gravityScale *= -(realRagdollHours / rb.mass);
-            rb.angularDrag /= (realRagdollHours / rb.mass);
+            rb.gravityScale *= -1;
+            rb.angularDrag /= Mathf.Max(realRagdollHours / rb.mass, 1);
         }
         yield return new WaitForSeconds(realRagdollHours);
         foreach(Rigidbody2D rb in ragdollParts){
-            rb.gravityScale /= -(realRagdollHours / rb.mass);
-            rb.angularDrag *= (realRagdollHours / rb.mass);
+            rb.gravityScale /= -1;
+            rb.angularDrag *= Mathf.Max(realRagdollHours / rb.mass, 1);
         }
     }
 }
