@@ -326,7 +326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &257026711
 Transform:
   m_ObjectHideFlags: 0
@@ -701,7 +701,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 10
   m_GravityScale: 1
@@ -806,11 +806,13 @@ MonoBehaviour:
   ragdollParts:
   - {fileID: 2119751853}
   - {fileID: 1496612037}
-  ragdollThreshold: 0
+  ragdollThreshold: 6
   attachedPartResistances:
   - 0.5
   attachedHitpointPools:
   - {fileID: 1496612041}
+  bloodAmount: 276
+  bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
 --- !u!1 &466509782
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,11 +990,13 @@ MonoBehaviour:
   ragdollParts:
   - {fileID: 2119751853}
   - {fileID: 1496612037}
-  ragdollThreshold: 0
+  ragdollThreshold: 4
   attachedPartResistances:
   - 0.5
   attachedHitpointPools:
   - {fileID: 1496612041}
+  bloodAmount: 220
+  bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
 --- !u!1 &473909343
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,6 +1052,8 @@ MonoBehaviour:
   ragdollThreshold: 0
   attachedPartResistances: []
   attachedHitpointPools: []
+  bloodAmount: 0
+  bloodPrefab: {fileID: 0}
 --- !u!50 &473909346
 Rigidbody2D:
   serializedVersion: 4
@@ -1288,7 +1294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &611025205
 Transform:
   m_ObjectHideFlags: 0
@@ -1724,8 +1730,8 @@ MonoBehaviour:
   legSpeed: -1000
   armSpeed: 500
   playerAttackState: 1
-  activeWeaponLeft: 1
-  activeWeaponRight: 3
+  activeWeaponLeft: 4
+  activeWeaponRight: 5
 --- !u!233 &976994274
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -1771,6 +1777,8 @@ MonoBehaviour:
   ragdollThreshold: 5
   attachedPartResistances: []
   attachedHitpointPools: []
+  bloodAmount: 900
+  bloodPrefab: {fileID: 7409921470973677862, guid: 2974b37c5b6c5f64e9b6c45282db6dbc, type: 3}
 --- !u!61 &976994276
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2022,6 +2030,8 @@ MonoBehaviour:
   - 0.5
   attachedHitpointPools:
   - {fileID: 976994275}
+  bloodAmount: 576
+  bloodPrefab: {fileID: 7409921470973677862, guid: 2974b37c5b6c5f64e9b6c45282db6dbc, type: 3}
 --- !u!1 &1181024044
 GameObject:
   m_ObjectHideFlags: 0
@@ -2175,7 +2185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1252672849
 Transform:
   m_ObjectHideFlags: 0
@@ -2512,11 +2522,13 @@ MonoBehaviour:
   ragdollParts:
   - {fileID: 2119751853}
   - {fileID: 1496612037}
-  ragdollThreshold: 0
+  ragdollThreshold: 4
   attachedPartResistances:
   - 0.5
   attachedHitpointPools:
   - {fileID: 1496612041}
+  bloodAmount: 220
+  bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
 --- !u!1 &1496612034
 GameObject:
   m_ObjectHideFlags: 0
@@ -2695,9 +2707,11 @@ MonoBehaviour:
   ragdollParts:
   - {fileID: 2119751853}
   - {fileID: 1496612037}
-  ragdollThreshold: 0
+  ragdollThreshold: 5
   attachedPartResistances: []
   attachedHitpointPools: []
+  bloodAmount: 525
+  bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
 --- !u!114 &1496612042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2733,6 +2747,7 @@ MonoBehaviour:
   attackTimer:
   - 0
   - 0
+  legPower: -500
 --- !u!1 &1511332184
 GameObject:
   m_ObjectHideFlags: 0
@@ -2880,6 +2895,8 @@ MonoBehaviour:
   - 2
   attachedHitpointPools:
   - {fileID: 976994275}
+  bloodAmount: 628
+  bloodPrefab: {fileID: 7409921470973677862, guid: 2974b37c5b6c5f64e9b6c45282db6dbc, type: 3}
 --- !u!1 &1516707042
 GameObject:
   m_ObjectHideFlags: 0
@@ -3333,7 +3350,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 10
   m_GravityScale: 1
@@ -3438,11 +3455,13 @@ MonoBehaviour:
   ragdollParts:
   - {fileID: 2119751853}
   - {fileID: 1496612037}
-  ragdollThreshold: 0
+  ragdollThreshold: 6
   attachedPartResistances:
   - 0.5
   attachedHitpointPools:
   - {fileID: 1496612041}
+  bloodAmount: 276
+  bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
 --- !u!1 &1723549750
 GameObject:
   m_ObjectHideFlags: 0
@@ -3846,6 +3865,8 @@ MonoBehaviour:
   - 0.5
   attachedHitpointPools:
   - {fileID: 976994275}
+  bloodAmount: 440
+  bloodPrefab: {fileID: 7409921470973677862, guid: 2974b37c5b6c5f64e9b6c45282db6dbc, type: 3}
 --- !u!1 &2047185481
 GameObject:
   m_ObjectHideFlags: 0
@@ -3866,7 +3887,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2047185482
 Transform:
   m_ObjectHideFlags: 0
@@ -4210,6 +4231,8 @@ MonoBehaviour:
   - 0.5
   attachedHitpointPools:
   - {fileID: 976994275}
+  bloodAmount: 440
+  bloodPrefab: {fileID: 7409921470973677862, guid: 2974b37c5b6c5f64e9b6c45282db6dbc, type: 3}
 --- !u!1 &2062710478
 GameObject:
   m_ObjectHideFlags: 0
@@ -4392,6 +4415,8 @@ MonoBehaviour:
   - 0.5
   attachedHitpointPools:
   - {fileID: 976994275}
+  bloodAmount: 576
+  bloodPrefab: {fileID: 7409921470973677862, guid: 2974b37c5b6c5f64e9b6c45282db6dbc, type: 3}
 --- !u!1 &2119751851
 GameObject:
   m_ObjectHideFlags: 0
@@ -4529,13 +4554,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   affiliation: 1
-  maxHP: 60
-  HP: 60
+  maxHP: 188
+  HP: 188
   ragdollParts:
   - {fileID: 2119751853}
   - {fileID: 1496612037}
-  ragdollThreshold: 0
+  ragdollThreshold: 5
   attachedPartResistances:
-  - 2
+  - 0.5
   attachedHitpointPools:
   - {fileID: 1496612041}
+  bloodAmount: 432
+  bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}

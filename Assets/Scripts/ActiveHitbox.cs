@@ -12,22 +12,38 @@ public class ActiveHitbox : MonoBehaviour
     [SerializeField] private float ragdollThreshold;
     [SerializeField] private float[] attachedPartResistances;
     [SerializeField] private ActiveHitbox[] attachedHitpointPools;
+    [SerializeField] private float bloodAmount;
+    
+    [SerializeField] private GameObject bloodPrefab;
     void OnCollisionEnter2D(Collision2D other){
         if(other.transform.GetComponent<AttackHitbox>() && other.transform.GetComponent<AttackHitbox>().Affiliation != affiliation){
             float baseDamage = other.transform.GetComponent<AttackHitbox>().BaseDamage;
             float force = other.transform.GetComponent<Rigidbody2D>().mass * other.relativeVelocity.magnitude;
             Debug.Log(force + " force");
-            takeDamage(baseDamage * force);
+            StartCoroutine(takeDamage(baseDamage * force,other));
             for(int i = 0; i < attachedHitpointPools.Length; i++){
-                attachedHitpointPools[i].takeDamage(baseDamage * force * attachedPartResistances[i]);
+                StartCoroutine(attachedHitpointPools[i].takeDamage(baseDamage * force * attachedPartResistances[i],other));
             }
             if(force > ragdollThreshold){
                 StartCoroutine(ragdollify(force));
             }
         }
     }
-    public void takeDamage(float amount){
+    public IEnumerator takeDamage(float amount, Collision2D other){
         HP -= amount;
+        if(HP > maxHP){HP = maxHP;}
+        if(amount > 0){
+            int percent = Mathf.CeilToInt((amount / maxHP) * bloodAmount);
+            for(int i = 0; i < percent; i++){
+                GameObject blood = Instantiate(bloodPrefab, transform.position, transform.rotation);
+                float bloodSize = Mathf.Sqrt(Random.Range(1f,5f));
+                blood.GetComponent<Rigidbody2D>().mass *= bloodSize;
+                blood.GetComponent<Rigidbody2D>().AddForce(other.relativeVelocity * bloodSize * Mathf.Max(3, 5 / other.relativeVelocity.magnitude));
+                blood.transform.localScale = new Vector3(bloodSize * 0.05f,bloodSize * 0.05f,bloodSize * 0.05f);
+                bloodAmount--;
+                yield return new WaitForEndOfFrame();
+            }
+        }
         if(HP < 0){
             if(gameObject.GetComponent<PlayerController>()){
                 //lmao
