@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int playerAttackState;
     [SerializeField] private int activeWeaponLeft;
     [SerializeField] private int activeWeaponRight;
+    [SerializeField] private GameObject[] weaponUItexts;
     public static PlayerController instance;
     // Start is called before the first frame update
     void Start()
@@ -73,5 +74,39 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.W)){limbRBs[4].mass /= 2; limbRBs[5].mass /= 2;}
         if(Input.GetKeyDown(KeyCode.S)){limbRBs[4].gravityScale *= -2; limbRBs[5].gravityScale *= -2;}
         if(Input.GetKeyUp(KeyCode.S)){limbRBs[4].gravityScale /= -2; limbRBs[5].gravityScale /= -2;}
+    }
+    public void swapSecondary(int weapon){
+        for(int i = 0; i < weapons.Length; i++){
+            if(i != activeWeaponRight){
+                //weapons[i].GetComponent<BoxCollider2D>().enabled = false;
+                weapons[i].GetComponent<SpriteRenderer>().enabled = false;
+                weaponUItexts[i].SetActive(false);
+            }
+        }
+        activeWeaponLeft = weapon;
+        //weapons[weapon].GetComponent<BoxCollider2D>().enabled = true;
+        weapons[weapon].GetComponent<SpriteRenderer>().enabled = true;
+        weaponUItexts[weapon].SetActive(true);
+    }
+    public void swapPrimary(int weapon){
+        for(int i = 0; i < weapons.Length; i++){
+            if(i != activeWeaponLeft){
+                //weapons[i].GetComponent<BoxCollider2D>().enabled = false;
+                weapons[i].GetComponent<SpriteRenderer>().enabled = false;
+                weaponUItexts[i].SetActive(false);
+            }
+        }
+        activeWeaponRight = weapon;
+        //weapons[weapon].GetComponent<BoxCollider2D>().enabled = true;
+        weapons[weapon].GetComponent<SpriteRenderer>().enabled = true;
+        weaponUItexts[weapon].SetActive(true);
+    }
+    public void deactivateOtherWeapons(){
+        for(int i = 0; i < weapons.Length; i++){
+            if(i != activeWeaponLeft && i != activeWeaponRight){
+                weapons[i].gameObject.SetActive(false);
+                weaponUItexts[i].SetActive(false);
+            }
+        }
     }
 }
