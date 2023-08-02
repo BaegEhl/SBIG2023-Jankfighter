@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IRSAgentAI : MonoBehaviour
+public class IRSAgentAI : EnemyAI
 {
     [SerializeField] private GameObject[] limbs;
     [SerializeField] private Rigidbody2D[] limbRBs;
