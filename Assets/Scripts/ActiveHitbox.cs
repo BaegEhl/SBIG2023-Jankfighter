@@ -32,7 +32,7 @@ public class ActiveHitbox : MonoBehaviour
     public IEnumerator takeDamage(float amount, Collision2D other){
         HP -= amount;
         if(HP > maxHP){HP = maxHP;}
-        if(amount > 0){
+        if(amount > 0 && bloodAmount > 0){
             int percent = Mathf.CeilToInt((amount / maxHP) * bloodAmount);
             for(int i = 0; i < percent; i++){
                 GameObject blood = Instantiate(bloodPrefab, transform.position, transform.rotation);

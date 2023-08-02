@@ -22,23 +22,11 @@ public class IRSAgentAI : MonoBehaviour
         if(isStabilizing){
             if(Mathf.Abs(Vector2.Dot(limbs[0].transform.up.normalized,Vector2.up.normalized)) > 0.75f && Mathf.Abs(Vector2.Dot(limbs[1].transform.up.normalized,Vector2.up.normalized)) > 0.75f){
                 isStabilizing = false;
-                /*limbRBs[0].mass *= 100;
-                limbRBs[1].mass *= 100;
-                limbRBs[2].mass *= 100;
-                limbRBs[3].mass *= 100;*/
-                //limbRBs[4].gravityScale /= 2;
-                //limbRBs[5].gravityScale /= 2;
             }
         }
         else{
             if(Mathf.Abs(Vector2.Dot(limbs[0].transform.up.normalized,Vector2.up.normalized)) < 0.5f || Mathf.Abs(Vector2.Dot(limbs[1].transform.up.normalized,Vector2.up.normalized)) < 0.5f){
                 isStabilizing = true;
-                /*limbRBs[0].mass /= 100;
-                limbRBs[1].mass /= 100;
-                limbRBs[2].mass /= 100;
-                limbRBs[3].mass /= 100;*/
-                //limbRBs[4].gravityScale *= 2;
-                //limbRBs[5].gravityScale *= 2;
             }
         }
     }
