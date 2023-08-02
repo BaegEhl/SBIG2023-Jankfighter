@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class ActiveHitbox : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class ActiveHitbox : MonoBehaviour
     [SerializeField] private float[] attachedPartResistances;
     [SerializeField] private ActiveHitbox[] attachedHitpointPools;
     [SerializeField] private float bloodAmount;
+    [SerializeField] private Image healthbar;
+    [SerializeField] private GameObject damageIndicatorPrefab;
     
     [SerializeField] private GameObject bloodPrefab;
     void OnCollisionEnter2D(Collision2D other){
@@ -31,10 +35,19 @@ public class ActiveHitbox : MonoBehaviour
     }
     public IEnumerator takeDamage(float amount, Collision2D other){
         HP -= amount;
+        if(amount > 0.5f && damageIndicatorPrefab != null){
+            int damageNumber = Mathf.RoundToInt(amount);
+            GameObject dIndicator = Instantiate(damageIndicatorPrefab,transform.position,transform.rotation);
+            dIndicator.GetComponent<TextMeshPro>().SetText(damageNumber.ToString());
+            dIndicator.transform.localScale *= Mathf.Max(1,Mathf.Sqrt(amount / 10));
+            dIndicator.GetComponent<BoxCollider2D>().size *= new Vector2(dIndicator.GetComponent<TextMeshPro>().text.Length,1);
+            dIndicator.GetComponent<Rigidbody2D>().AddForce(transform.up * 100 * Mathf.Max(1,Mathf.Sqrt(amount)));
+        }
         if(HP > maxHP){HP = maxHP;}
         if(amount > 0 && bloodAmount > 0){
             int percent = Mathf.CeilToInt((amount / maxHP) * bloodAmount);
             for(int i = 0; i < percent; i++){
+                if(healthbar != null){healthbar.fillAmount -= ((amount / maxHP) / (float)percent);};
                 GameObject blood = Instantiate(bloodPrefab, transform.position, transform.rotation);
                 float bloodSize = Mathf.Sqrt(Random.Range(1f,5f));
                 blood.GetComponent<Rigidbody2D>().mass *= bloodSize;
@@ -46,6 +59,9 @@ public class ActiveHitbox : MonoBehaviour
                 }
                 yield return new WaitForEndOfFrame();
             }
+        }
+        else if (healthbar != null){
+            healthbar.fillAmount = HP / maxHP;
         }
         if(HP < 0){
             die();

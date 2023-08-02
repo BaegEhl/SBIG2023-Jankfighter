@@ -183,6 +183,8 @@ MonoBehaviour:
   attachedHitpointPools:
   - {fileID: 2798986562779123037}
   bloodAmount: 432
+  healthbar: {fileID: 0}
+  damageIndicatorPrefab: {fileID: 0}
   bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
 --- !u!1 &2798986561173762514
 GameObject:
@@ -367,6 +369,8 @@ MonoBehaviour:
   attachedHitpointPools:
   - {fileID: 2798986562779123037}
   bloodAmount: 388
+  healthbar: {fileID: 0}
+  damageIndicatorPrefab: {fileID: 0}
   bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
 --- !u!1 &2798986561178319283
 GameObject:
@@ -747,6 +751,8 @@ MonoBehaviour:
   attachedHitpointPools:
   - {fileID: 2798986562779123037}
   bloodAmount: 824
+  healthbar: {fileID: 0}
+  damageIndicatorPrefab: {fileID: 0}
   bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
 --- !u!1 &2798986562335218877
 GameObject:
@@ -931,6 +937,8 @@ MonoBehaviour:
   attachedHitpointPools:
   - {fileID: 2798986562779123037}
   bloodAmount: 432
+  healthbar: {fileID: 0}
+  damageIndicatorPrefab: {fileID: 0}
   bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
 --- !u!1 &2798986562671998430
 GameObject:
@@ -1298,6 +1306,8 @@ MonoBehaviour:
   attachedHitpointPools:
   - {fileID: 2798986562779123037}
   bloodAmount: 388
+  healthbar: {fileID: 0}
+  damageIndicatorPrefab: {fileID: 0}
   bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
 --- !u!1 &2798986562779123036
 GameObject:
@@ -1481,6 +1491,8 @@ MonoBehaviour:
   attachedPartResistances: []
   attachedHitpointPools: []
   bloodAmount: 1080
+  healthbar: {fileID: 0}
+  damageIndicatorPrefab: {fileID: 7371930013006180728, guid: 9e429ce2ff50da240a5b5970cf5e66de, type: 3}
   bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
 --- !u!114 &2798986562779123038
 MonoBehaviour:
