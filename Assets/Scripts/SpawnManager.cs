@@ -5,32 +5,23 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject enemyContainer;
-    [SerializeField] private GameObject[][] waves;
-    [SerializeField] private Vector2[][] spawnpoints;
-    [SerializeField] private float[][] spawnTimes;
-    [SerializeField] private float[] waveTimers;
-    private List<GameObject> aliveEnemies;
+    [SerializeField] private GameObject[] waves;
+    [SerializeField] private Vector2[] spawnpoints;
+    [SerializeField] private float[] spawnTimes;
+    [SerializeField] private List<GameObject> aliveEnemies;
     [SerializeField] private GameObject[] bossAssets;
-    private float timer;
-    private int spawnCount;
+    [SerializeField] private float timer;
     [SerializeField] private GameObject bossCutscene;
     // Start is called before the first frame update
     public void startWaves(){
         StartCoroutine(spawnManage());
     }
     IEnumerator spawnManage(){
-        int wave = 0;
-        while(wave < waves.Length){
-            spawnCount = waves[wave].Length;
-            for(int i = 0; i < waves[wave].Length; i++){
-                yield return new WaitForSeconds(spawnTimes[wave][i]);
-                GameObject enemy = Instantiate(waves[wave][i],spawnpoints[wave][i],transform.rotation, enemyContainer.transform);
-                aliveEnemies.Add(enemy.GetComponentInChildren<EnemyAI>().gameObject);
-                spawnCount--;
-            }
-            wave++;
-            timer = waveTimers[wave];
+        for(int i = 0; i < waves.Length; i++){
+            timer = spawnTimes[i];
             while(timer > 0){yield return new WaitForEndOfFrame();}
+            GameObject enemy = Instantiate(waves[i],spawnpoints[i],transform.rotation, enemyContainer.transform);
+            aliveEnemies.Add(enemy.GetComponentInChildren<EnemyAI>().gameObject);
         }
         foreach(GameObject obj in bossAssets){
             obj.SetActive(true);
@@ -42,7 +33,12 @@ public class SpawnManager : MonoBehaviour
     }
     void Update(){
         timer -= Time.deltaTime;
-        if(spawnCount == 0 && timer > 5 && aliveEnemies.Count == 0){
+        for(int i = 0; i < aliveEnemies.Count; i++){
+            if(aliveEnemies[i] == null){
+                aliveEnemies.RemoveAt(i);
+            }
+        }
+        if(timer > 5 && aliveEnemies.Count == 0){
             timer = 5;
         }
     }

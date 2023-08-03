@@ -3430,11 +3430,11 @@ MonoBehaviour:
 
 
     LMB (Release):
-    Cast Fireball - Launch several orbs of war crime sauce forward
+    Cast Fireball - Launch several orbs of war crime sauce
 
 
-    RMB (Release):
-    Aim - Point the weapon towards your cursor'
+    RMB (Release): Aim
+    - Point the weapon towards your cursor'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5615,11 +5615,84 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyContainer: {fileID: 1809122670}
-  waveTimers: []
+  waves:
+  - {fileID: 2748247772702658762, guid: e1409f669d6f4ab419fe42e8b61e2a87, type: 3}
+  - {fileID: 2748247772702658762, guid: e1409f669d6f4ab419fe42e8b61e2a87, type: 3}
+  - {fileID: 2748247772702658762, guid: e1409f669d6f4ab419fe42e8b61e2a87, type: 3}
+  - {fileID: 2748247772702658762, guid: e1409f669d6f4ab419fe42e8b61e2a87, type: 3}
+  - {fileID: 2748247772702658762, guid: e1409f669d6f4ab419fe42e8b61e2a87, type: 3}
+  - {fileID: 2748247772702658762, guid: e1409f669d6f4ab419fe42e8b61e2a87, type: 3}
+  - {fileID: 2748247772702658762, guid: e1409f669d6f4ab419fe42e8b61e2a87, type: 3}
+  - {fileID: 3915136374790270080, guid: 3238f6c964d63af458fccaca7f017a45, type: 3}
+  - {fileID: 2748247772702658762, guid: e1409f669d6f4ab419fe42e8b61e2a87, type: 3}
+  - {fileID: 2748247772702658762, guid: e1409f669d6f4ab419fe42e8b61e2a87, type: 3}
+  - {fileID: 3915136374790270080, guid: 3238f6c964d63af458fccaca7f017a45, type: 3}
+  - {fileID: 2798986561389053151, guid: 2d42a960833390d44b66b73dec3b49b8, type: 3}
+  - {fileID: 2748247772702658762, guid: e1409f669d6f4ab419fe42e8b61e2a87, type: 3}
+  - {fileID: 2748247772702658762, guid: e1409f669d6f4ab419fe42e8b61e2a87, type: 3}
+  - {fileID: 3915136374790270080, guid: 3238f6c964d63af458fccaca7f017a45, type: 3}
+  - {fileID: 3915136374790270080, guid: 3238f6c964d63af458fccaca7f017a45, type: 3}
+  - {fileID: 2798986561389053151, guid: 2d42a960833390d44b66b73dec3b49b8, type: 3}
+  - {fileID: 2748247772702658762, guid: e1409f669d6f4ab419fe42e8b61e2a87, type: 3}
+  - {fileID: 2748247772702658762, guid: e1409f669d6f4ab419fe42e8b61e2a87, type: 3}
+  - {fileID: 2798986561389053151, guid: 2d42a960833390d44b66b73dec3b49b8, type: 3}
+  - {fileID: 3915136374790270080, guid: 3238f6c964d63af458fccaca7f017a45, type: 3}
+  - {fileID: 2748247772702658762, guid: e1409f669d6f4ab419fe42e8b61e2a87, type: 3}
+  - {fileID: 2748247772702658762, guid: e1409f669d6f4ab419fe42e8b61e2a87, type: 3}
+  spawnpoints:
+  - {x: 5, y: 15}
+  - {x: 5, y: 15}
+  - {x: 0, y: 15}
+  - {x: 8, y: 15}
+  - {x: 3, y: 15}
+  - {x: -2, y: 15}
+  - {x: 5, y: 15}
+  - {x: 10, y: 15}
+  - {x: 2, y: 15}
+  - {x: -4, y: 15}
+  - {x: 12, y: 15}
+  - {x: 4, y: 15}
+  - {x: 4, y: 15}
+  - {x: -4, y: 15}
+  - {x: 8, y: 15}
+  - {x: 12, y: 15}
+  - {x: -2, y: 15}
+  - {x: 4, y: 15}
+  - {x: 8, y: 15}
+  - {x: -6, y: 15}
+  - {x: 12, y: 15}
+  - {x: 0, y: 15}
+  - {x: 4, y: 15}
+  spawnTimes:
+  - 0
+  - 30
+  - 2
+  - 45
+  - 2
+  - 2
+  - 60
+  - 2
+  - 40
+  - 2
+  - 2
+  - 60
+  - 45
+  - 1
+  - 1
+  - 1
+  - 60
+  - 2
+  - 1
+  - 75
+  - 1
+  - 1
+  - 1
+  aliveEnemies: []
   bossAssets:
   - {fileID: 123992005}
   - {fileID: 946467913}
-  bossCutscene: {fileID: 0}
+  timer: 0
+  bossCutscene: {fileID: 2049020282}
 --- !u!1 &547242478
 GameObject:
   m_ObjectHideFlags: 0
@@ -9563,7 +9636,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -650, y: -20}
+  m_AnchoredPosition: {x: -650, y: -60}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1022980245
