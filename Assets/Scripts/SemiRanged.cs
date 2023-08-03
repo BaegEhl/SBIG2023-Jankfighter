@@ -23,7 +23,7 @@ public class SemiRanged : Weapon
                 weaponRB.AddTorque(weaponForce * recoilFactor * Random.Range(-kickFactor,kickFactor));
                 GameObject bullet = Instantiate(projectilePrefab,transform.position,transform.rotation);
                 bullet.transform.Rotate(new Vector3(0,0,Random.Range(-spread,spread)));
-                bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right.normalized * weaponForce * Random.Range(1 - (spread / 180), 1 + (spread / 180)));
+                bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right.normalized * weaponForce * Random.Range(1 - (spread / 90), 1 + (spread / 90)));
                 ammo--;
             }
         }
