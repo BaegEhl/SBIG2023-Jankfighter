@@ -16,21 +16,22 @@ public class ChargedRanged : Weapon
     {
         float timer = 0;
         while(Input.GetMouseButton(0)){
-            timer += Time.deltaTime;
+            timer += Time.deltaTime * PlayerController.instance.StatModifiers[6];
             yield return new WaitForEndOfFrame();
         }
         for(int i = 0; i < shots + Mathf.RoundToInt(chargeBullets * timer); i++){
-            weaponRB.AddForce(transform.right.normalized * (-weaponForce * recoilFactor + chargeRecoil * timer));
-            weaponRB.AddTorque((-weaponForce * recoilFactor + chargeRecoil * timer) * Random.Range(-kickFactor,kickFactor) * timer);
+            weaponRB.AddForce(transform.right.normalized * (-weaponForce * recoilFactor + chargeRecoil * timer) * PlayerController.instance.StatModifiers[3] * PlayerController.instance.StatModifiers[2] * PlayerController.instance.StatModifiers[1]);
+            weaponRB.AddTorque((-weaponForce * recoilFactor + chargeRecoil * timer) * Random.Range(-kickFactor,kickFactor) * PlayerController.instance.StatModifiers[3] * PlayerController.instance.StatModifiers[2] * PlayerController.instance.StatModifiers[1]);
             GameObject bullet = Instantiate(projectilePrefab,transform.position,transform.rotation);
-            bullet.transform.Rotate(new Vector3(0,0,Random.Range(-spread, spread)));
-            bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right.normalized * (weaponForce + chargeForce * timer) * Random.Range(1 - (spread / 90), 1 + (spread / 90)));
+            bullet.GetComponent<Rigidbody2D>().mass *= PlayerController.instance.StatModifiers[4];
+            bullet.transform.Rotate(new Vector3(0,0,Random.Range(-spread * PlayerController.instance.StatModifiers[5], spread * PlayerController.instance.StatModifiers[5])));
+            bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right.normalized * (weaponForce + chargeForce * timer) * Random.Range(1 - ((spread * PlayerController.instance.StatModifiers[5]) / 90), 1 + ((spread * PlayerController.instance.StatModifiers[5]) / 90)) * PlayerController.instance.StatModifiers[3] * PlayerController.instance.StatModifiers[1]);
         }
     }
     public override IEnumerator UseWeaponAlt()
     {
         while(Input.GetMouseButton(1)){
-            weaponRB.AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * Time.fixedDeltaTime * weaponForce * altfireMultiplier);
+            weaponRB.AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * Time.fixedDeltaTime * weaponForce * altfireMultiplier * PlayerController.instance.StatModifiers[3]);
             yield return new WaitForFixedUpdate();
         }
     }

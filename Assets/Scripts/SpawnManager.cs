@@ -23,6 +23,7 @@ public class SpawnManager : MonoBehaviour
             GameObject enemy = Instantiate(waves[i],spawnpoints[i],transform.rotation, enemyContainer.transform);
             aliveEnemies.Add(enemy.GetComponentInChildren<EnemyAI>().gameObject);
         }
+        while(aliveEnemies.Count > 0){yield return new WaitForEndOfFrame();}
         foreach(GameObject obj in bossAssets){
             obj.SetActive(true);
         }

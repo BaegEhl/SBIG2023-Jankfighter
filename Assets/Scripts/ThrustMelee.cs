@@ -10,7 +10,7 @@ public class ThrustMelee : Weapon
     {
         if(playerWeapon){
             while(Input.GetMouseButton(0)){
-                weaponRB.AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * Time.fixedDeltaTime * weaponForce);
+                weaponRB.AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * Time.fixedDeltaTime * weaponForce * PlayerController.instance.StatModifiers[3]);
                 yield return new WaitForFixedUpdate();
             }
         }
@@ -22,12 +22,12 @@ public class ThrustMelee : Weapon
     {
         float charge = 0;
         while(Input.GetMouseButton(1)){
-            charge += Time.deltaTime;
+            charge += Time.deltaTime * PlayerController.instance.StatModifiers[6];
             yield return new WaitForEndOfFrame();
         }
         float timer = chargeDuration;
         while(timer > 0){
-            weaponRB.AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * charge * weaponForce * altfireMultiplier * Time.fixedDeltaTime / chargeDuration);
+            weaponRB.AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * charge * PlayerController.instance.StatModifiers[3] * weaponForce * altfireMultiplier * Time.fixedDeltaTime / chargeDuration);
             timer -= Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }

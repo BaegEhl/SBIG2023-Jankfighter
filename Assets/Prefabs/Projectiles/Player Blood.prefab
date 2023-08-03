@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7409921470973677858}
   - component: {fileID: 7409921470973677859}
   - component: {fileID: 7409921470973677856}
-  - component: {fileID: 7409921470973677857}
+  - component: {fileID: 5955564965688673992}
   m_Layer: 0
   m_Name: Player Blood
   m_TagString: Untagged
@@ -124,7 +124,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7409921470973677857
+--- !u!114 &5955564965688673992
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,9 +133,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7409921470973677862}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaa1e3e6ede30624a8b7f4d2fade98dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cf77fe7d960ce24a838b07ded631274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 0
   affiliation: 0
+  xp: 0
   impactTimer: 4

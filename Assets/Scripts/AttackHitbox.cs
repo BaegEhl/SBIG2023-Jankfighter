@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class AttackHitbox : MonoBehaviour
 {
-    [SerializeField] private float baseDamage;
+    [SerializeField] protected float baseDamage;
     public float BaseDamage{get{return baseDamage;}}
-    [SerializeField] private int affiliation;
+    [SerializeField] protected int affiliation;
     public int Affiliation{get{return affiliation;}}
-    [SerializeField] private float impactTimer;
+    [SerializeField] protected float xp;
+    public float XP{get{return xp;}}
+    [SerializeField] protected float impactTimer;
     void OnCollisionEnter2D(Collision2D other){
         if(impactTimer >= 0 /*&& (!other.transform.GetComponent<ActiveHitbox>() || other.transform.GetComponent<ActiveHitbox>().Affiliation != affiliation)*/){
             StartCoroutine(startImpactTimer());

@@ -17,13 +17,17 @@ public class ActiveHitbox : MonoBehaviour
     [SerializeField] private float bloodAmount;
     [SerializeField] private Image healthbar;
     [SerializeField] private GameObject damageIndicatorPrefab;
-    
+    [SerializeField] private float bloodRegen;
+    [SerializeField] private float healthRegen;
     [SerializeField] private GameObject bloodPrefab;
     void OnCollisionEnter2D(Collision2D other){
         if(other.transform.GetComponent<AttackHitbox>() && other.transform.GetComponent<AttackHitbox>().Affiliation != affiliation){
-            float baseDamage = other.transform.GetComponent<AttackHitbox>().BaseDamage;
+            AttackHitbox hb = other.transform.GetComponent<AttackHitbox>();
+            float baseDamage = hb.BaseDamage;
+            if(affiliation == 0){baseDamage *= PlayerController.instance.StatModifiers[0];}
             float force = other.transform.GetComponent<Rigidbody2D>().mass * other.relativeVelocity.magnitude;
             //Debug.Log(force + " force");
+            if(hb.XP > 0){PlayerController.instance.addXP(hb.XP * Mathf.Sqrt(force));bloodAmount += hb.XP * force * PlayerController.instance.StatModifiers[13];}
             StartCoroutine(takeDamage(baseDamage * force,other));
             for(int i = 0; i < attachedHitpointPools.Length; i++){
                 StartCoroutine(attachedHitpointPools[i].takeDamage(baseDamage * force * attachedPartResistances[i],other));
@@ -47,7 +51,7 @@ public class ActiveHitbox : MonoBehaviour
         if(amount > 0 && bloodAmount > 0){
             int percent = Mathf.CeilToInt((amount / maxHP) * bloodAmount);
             for(int i = 0; i < percent; i++){
-                if(healthbar != null){healthbar.fillAmount -= ((amount / maxHP) / (float)percent);};
+                if(healthbar != null){healthbar.fillAmount -= ((amount / maxHP) / (float)percent);}
                 GameObject blood = Instantiate(bloodPrefab, transform.position, transform.rotation);
                 float bloodSize = Mathf.Sqrt(Random.Range(1f,5f));
                 blood.GetComponent<Rigidbody2D>().mass *= bloodSize;
@@ -87,5 +91,40 @@ public class ActiveHitbox : MonoBehaviour
             rb.angularDrag *= Mathf.Max(realRagdollHours / rb.mass, 1);
         }
         Debug.Log("no longer ragdolled");
+    }
+    void Update(){
+        if(HP < maxHP && bloodAmount > 0 && healthRegen > 0){
+            bloodAmount -= 5 * Time.deltaTime * healthRegen;
+            HP += Time.deltaTime * healthRegen;
+            if(healthbar != null){healthbar.fillAmount = HP / maxHP;}
+        }
+        bloodAmount += Time.deltaTime * bloodRegen;
+    }
+    public void modifyStats(int stat, float amount){
+        switch(stat){
+            case 0:
+            bloodRegen += amount;
+            break;
+            case 1:
+            healthRegen += amount;
+            break;
+            case 2:
+            maxHP += amount;
+            HP += amount;
+            break;
+        }
+    }
+    public void BloodSpray(int amount){
+        if(amount > 0 && bloodAmount > 0){
+            for(int i = 0; i < amount; i++){
+                GameObject blood = Instantiate(bloodPrefab, transform.position, transform.rotation);
+                blood.layer = 7;
+                float bloodSize = Mathf.Sqrt(Random.Range(1f,5f));
+                blood.GetComponent<Rigidbody2D>().mass *= bloodSize;
+                blood.transform.localScale = new Vector3(bloodSize * 0.05f,bloodSize * 0.05f,bloodSize * 0.05f);
+                blood.GetComponent<Rigidbody2D>().AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * 100);
+                bloodAmount--;
+            }
+        }
     }
 }

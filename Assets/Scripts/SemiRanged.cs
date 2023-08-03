@@ -17,28 +17,49 @@ public class SemiRanged : Weapon
     private bool isReloading = false;
     public override IEnumerator UseWeapon()
     {
-        if(ammo > 0 && !isReloading){
-            for(int i = 0; i < projectileCount; i++){
-                weaponRB.AddForce(transform.right.normalized * -weaponForce * recoilFactor);
-                weaponRB.AddTorque(weaponForce * recoilFactor * Random.Range(-kickFactor,kickFactor));
-                GameObject bullet = Instantiate(projectilePrefab,transform.position,transform.rotation);
-                bullet.transform.Rotate(new Vector3(0,0,Random.Range(-spread,spread)));
-                bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right.normalized * weaponForce * Random.Range(1 - (spread / 90), 1 + (spread / 90)));
-                ammo--;
+        if(playerWeapon){
+            if(ammo > 0 && !isReloading){
+                for(int i = 0; i < projectileCount; i++){
+                    weaponRB.AddForce(transform.right.normalized * -weaponForce * recoilFactor * PlayerController.instance.StatModifiers[3] * PlayerController.instance.StatModifiers[2] * PlayerController.instance.StatModifiers[1]);
+                    weaponRB.AddTorque(weaponForce * recoilFactor * Random.Range(-kickFactor,kickFactor) * PlayerController.instance.StatModifiers[3] * PlayerController.instance.StatModifiers[2] * PlayerController.instance.StatModifiers[1]);
+                    GameObject bullet = Instantiate(projectilePrefab,transform.position,transform.rotation);
+                    bullet.GetComponent<Rigidbody2D>().mass *= PlayerController.instance.StatModifiers[4];
+                    bullet.transform.Rotate(new Vector3(0,0,Random.Range(-spread * PlayerController.instance.StatModifiers[5],spread * PlayerController.instance.StatModifiers[5])));
+                    bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right.normalized * weaponForce * Random.Range(1 - ((spread * PlayerController.instance.StatModifiers[5]) / 90), 1 + ((spread * PlayerController.instance.StatModifiers[5]) / 90)) * PlayerController.instance.StatModifiers[3] * PlayerController.instance.StatModifiers[1]);
+                    ammo--;
+                }
             }
+            else{
+                ammo += reloadAmount;
+                if(ammo >= maxAmmo){ammo = maxAmmo; isReloading = false;}
+                else{isReloading = true;}
+            }
+            yield return null;
         }
         else{
-            ammo += reloadAmount;
-            if(ammo >= maxAmmo){ammo = maxAmmo; isReloading = false;}
-            else{isReloading = true;}
+            if(ammo > 0 && !isReloading){
+                for(int i = 0; i < projectileCount; i++){
+                    weaponRB.AddForce(transform.right.normalized * -weaponForce * recoilFactor);
+                    weaponRB.AddTorque(weaponForce * recoilFactor * Random.Range(-kickFactor,kickFactor));
+                    GameObject bullet = Instantiate(projectilePrefab,transform.position,transform.rotation);
+                    bullet.transform.Rotate(new Vector3(0,0,Random.Range(-spread,spread)));
+                    bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right.normalized * weaponForce * Random.Range(1 - (spread / 90), 1 + (spread / 90)));
+                    ammo--;
+                }
+            }
+            else{
+                ammo += reloadAmount;
+                if(ammo >= maxAmmo){ammo = maxAmmo; isReloading = false;}
+                else{isReloading = true;}
+            }
+            yield return null;
         }
-        yield return null;
     }
     public override IEnumerator UseWeaponAlt()
     {
         if(playerWeapon){
             while(Input.GetMouseButton(1)){
-                weaponRB.AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * Time.fixedDeltaTime * weaponForce * altfireMultiplier);
+                weaponRB.AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * Time.fixedDeltaTime * weaponForce * altfireMultiplier * PlayerController.instance.StatModifiers[3]);
                 yield return new WaitForFixedUpdate();
             }
         }
