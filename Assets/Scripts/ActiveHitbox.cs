@@ -57,7 +57,7 @@ public class ActiveHitbox : MonoBehaviour
                 float bloodSize = Mathf.Sqrt(Random.Range(1f,5f));
                 blood.GetComponent<Rigidbody2D>().mass *= bloodSize;
                 Vector2 temp = other.relativeVelocity;
-                if(temp != Vector2.zero){blood.GetComponent<Rigidbody2D>().AddForce(temp * bloodSize * Mathf.Max(3, 5 / other.relativeVelocity.magnitude));Debug.Log(temp);}
+                if(temp != Vector2.zero){blood.GetComponent<Rigidbody2D>().AddForce(temp * bloodSize * Mathf.Max(3, 5 / other.relativeVelocity.magnitude));}
                 blood.transform.localScale = new Vector3(bloodSize * 0.05f,bloodSize * 0.05f,bloodSize * 0.05f);
                 bloodAmount--;
                 if(bloodAmount <= 0 && HP < 0){
@@ -87,7 +87,7 @@ public class ActiveHitbox : MonoBehaviour
     }
     public IEnumerator ragdollify(float force){
         float realRagdollHours = force - (ragdollThreshold * gameObject.GetComponent<Rigidbody2D>().mass);
-        Debug.Log("ragdolled");
+        //Debug.Log("ragdolled");
         foreach(Rigidbody2D rb in ragdollParts){
             rb.gravityScale *= -1;
             rb.angularDrag /= Mathf.Max(realRagdollHours / rb.mass, 1);
@@ -97,7 +97,7 @@ public class ActiveHitbox : MonoBehaviour
             rb.gravityScale /= -1;
             rb.angularDrag *= Mathf.Max(realRagdollHours / rb.mass, 1);
         }
-        Debug.Log("no longer ragdolled");
+        //Debug.Log("no longer ragdolled");
     }
     void Update(){
         if(HP < maxHP && bloodAmount > 0 && healthRegen > 0){

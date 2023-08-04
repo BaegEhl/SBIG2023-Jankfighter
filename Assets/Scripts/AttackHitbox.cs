@@ -13,13 +13,20 @@ public class AttackHitbox : MonoBehaviour
     [SerializeField] protected float xp;
     public float XP{get{return xp;}}
     [SerializeField] protected float impactTimer;
+    public static int deleted;
     void OnCollisionEnter2D(Collision2D other){
         if(impactTimer >= 0 /*&& (!other.transform.GetComponent<ActiveHitbox>() || other.transform.GetComponent<ActiveHitbox>().Affiliation != affiliation)*/){
             StartCoroutine(startImpactTimer());
         }
     }
     IEnumerator startImpactTimer(){
-        yield return new WaitForSeconds(impactTimer);
+        if(Time.deltaTime < 1f / PlayerController.lagTolerance){
+            yield return new WaitForSeconds(impactTimer);
+        }
+        else{
+            Debug.Log("deleting for performance " + deleted);
+            deleted++;
+        }
         Destroy(gameObject);
     }
 }

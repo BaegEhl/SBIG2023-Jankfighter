@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float[] statUpgradeModifierThings;
     private float xp;
     [SerializeField] private float bloodNerf;
+    public static float lagTolerance;
+    [SerializeField] private GameObject text;
+    [SerializeField] private Slider slider;
     public float[] StatModifiers{get{return statUpgradeModifierThings;}}
     // Start is called before the first frame update
     void Awake()
@@ -259,5 +263,9 @@ public class PlayerController : MonoBehaviour
     }
     void OnDestroy(){
         Application.Quit();
+    }
+    public void updateLagTolerance(){
+        lagTolerance = slider.value;
+        text.GetComponent<TextMeshProUGUI>().text = (lagTolerance.ToString());
     }
 }

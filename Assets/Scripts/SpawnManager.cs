@@ -12,6 +12,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject[] bossAssets;
     [SerializeField] private float timer;
     [SerializeField] private GameObject bossCutscene;
+    [SerializeField] private GameObject player;
     // Start is called before the first frame update
     public void startWaves(){
         StartCoroutine(spawnManage());
@@ -30,6 +31,7 @@ public class SpawnManager : MonoBehaviour
         aliveEnemies.Add(bossAssets[0].GetComponentInChildren<EnemyAI>().gameObject);
         while(aliveEnemies.Count > 0){yield return new WaitForEndOfFrame();}
         Destroy(enemyContainer);
+        player.SetActive(false);
         bossCutscene.SetActive(true);
     }
     void Update(){
