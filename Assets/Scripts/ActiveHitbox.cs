@@ -62,7 +62,12 @@ public class ActiveHitbox : MonoBehaviour
                 if(bloodAmount <= 0 && HP < 0){
                     die();
                 }
-                yield return new WaitForEndOfFrame();
+                if(Time.timeScale != 0){
+                    yield return new WaitForEndOfFrame();
+                }
+                else{
+                    yield return new WaitForFixedUpdate();
+                }
             }
         }
         else if (healthbar != null){
