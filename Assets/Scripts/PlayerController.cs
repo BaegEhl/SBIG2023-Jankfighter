@@ -24,7 +24,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float[] statUpgradeModifierThings;
     private float xp;
     [SerializeField] private float bloodNerf;
-    public static float lagTolerance;
+    [SerializeField] private float lagTolerance;
+    public float LagTolerance{get{return lagTolerance;}}
     [SerializeField] private GameObject text;
     [SerializeField] private Slider slider;
     public float[] StatModifiers{get{return statUpgradeModifierThings;}}

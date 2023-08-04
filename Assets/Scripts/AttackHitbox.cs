@@ -20,12 +20,13 @@ public class AttackHitbox : MonoBehaviour
         }
     }
     IEnumerator startImpactTimer(){
-        if(Time.deltaTime < 1f / PlayerController.lagTolerance){
+        if(Time.unscaledDeltaTime < 1f / PlayerController.instance.LagTolerance){
             yield return new WaitForSeconds(impactTimer);
         }
         else{
             Debug.Log("deleting for performance " + deleted);
             deleted++;
+            yield return null;
         }
         Destroy(gameObject);
     }

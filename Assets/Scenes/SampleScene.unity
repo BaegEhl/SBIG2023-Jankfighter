@@ -14807,6 +14807,7 @@ MonoBehaviour:
   bloodNerfResist: 30
   statUpgradeModifierThings: []
   bloodNerf: 0
+  lagTolerance: 0
   text: {fileID: 1895290219}
   slider: {fileID: 1964498391}
 --- !u!233 &976994274
