@@ -7389,16 +7389,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf162e05de46f447b24c006bcf77b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponForce: 24
+  weaponForce: 50
   altfireMultiplier: 8
   weaponRB: {fileID: 463085856}
   recoilFactor: 0.75
   kickFactor: 0.25
   projectilePrefab: {fileID: 5519292606867440905, guid: 91f2775b73158b843b116e998334ea24, type: 3}
-  chargeForce: 1
+  chargeForce: 4
   chargeBullets: 3
-  chargeRecoil: -4
-  shots: 3
+  chargeRecoil: -6
+  shots: 6
   spread: 20
 --- !u!61 &463085854
 BoxCollider2D:
@@ -9631,10 +9631,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77ce638fda306044a0ccb62630576e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponForce: 18
-  altfireMultiplier: 10
+  weaponForce: 40
+  altfireMultiplier: 7.5
   weaponRB: {fileID: 576410966}
-  recoilFactor: 0.75
+  recoilFactor: 0.5
   kickFactor: 0.2
   maxAmmo: 12
   reloadAmount: 6
@@ -12677,10 +12677,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5517787e7e046184a85c886f65cbae34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponForce: 30
+  weaponForce: 48
   altfireMultiplier: 6
   weaponRB: {fileID: 807341532}
-  recoilFactor: 0.35
+  recoilFactor: 0.25
   kickFactor: 0.035
   maxAmmo: 12
   fireRate: 0.05
@@ -17965,15 +17965,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5517787e7e046184a85c886f65cbae34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponForce: 20
-  altfireMultiplier: 30
+  weaponForce: 65
+  altfireMultiplier: 20
   weaponRB: {fileID: 1252672853}
-  recoilFactor: 5
-  kickFactor: 0.1
+  recoilFactor: 2
+  kickFactor: 0.08
   maxAmmo: 100
   fireRate: 0.125
   reloadTime: 5
-  projectilePrefab: {fileID: 6901619526177981350, guid: 2bc171029fe3c0648b898e8950833e6d, type: 3}
+  projectilePrefab: {fileID: 5519292606867440905, guid: 91f2775b73158b843b116e998334ea24, type: 3}
 --- !u!61 &1252672851
 BoxCollider2D:
   m_ObjectHideFlags: 0
