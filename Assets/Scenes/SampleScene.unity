@@ -4307,8 +4307,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   affiliation: 1
-  maxHP: 1400
-  HP: 1400
+  maxHP: 2725
+  HP: 2725
   ragdollParts: []
   ragdollThreshold: 0
   attachedPartResistances: []
@@ -7389,16 +7389,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf162e05de46f447b24c006bcf77b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponForce: 50
+  weaponForce: 45
   altfireMultiplier: 8
   weaponRB: {fileID: 463085856}
   recoilFactor: 0.75
   kickFactor: 0.25
   projectilePrefab: {fileID: 5519292606867440905, guid: 91f2775b73158b843b116e998334ea24, type: 3}
-  chargeForce: 4
+  chargeForce: 3
   chargeBullets: 3
   chargeRecoil: -6
-  shots: 6
+  shots: 3
   spread: 20
 --- !u!61 &463085854
 BoxCollider2D:
@@ -17576,12 +17576,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   affiliation: 1
-  maxHP: 844
-  HP: 844
+  maxHP: 1875
+  HP: 1875
   ragdollParts: []
   ragdollThreshold: 0
   attachedPartResistances:
-  - 0.75
+  - 0.55
   attachedHitpointPools:
   - {fileID: 260376364}
   bloodAmount: 0
@@ -19148,12 +19148,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   affiliation: 1
-  maxHP: 576
-  HP: 576
+  maxHP: 1440
+  HP: 1440
   ragdollParts: []
   ragdollThreshold: 0
   attachedPartResistances:
-  - 0.7
+  - 0.4
   attachedHitpointPools:
   - {fileID: 260376364}
   bloodAmount: 0
@@ -23567,12 +23567,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   affiliation: 1
-  maxHP: 975
-  HP: 975
+  maxHP: 3100
+  HP: 3100
   ragdollParts: []
   ragdollThreshold: 0
   attachedPartResistances:
-  - 0.3
+  - 0.2
   attachedHitpointPools:
   - {fileID: 260376364}
   bloodAmount: 0
@@ -26569,12 +26569,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   affiliation: 1
-  maxHP: 1125
-  HP: 1125
+  maxHP: 2050
+  HP: 2050
   ragdollParts: []
   ragdollThreshold: 0
   attachedPartResistances:
-  - 0.4
+  - 0.25
   attachedHitpointPools:
   - {fileID: 260376364}
   bloodAmount: 0
@@ -27264,12 +27264,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   affiliation: 1
-  maxHP: 1028
-  HP: 1028
+  maxHP: 2275
+  HP: 2275
   ragdollParts: []
   ragdollThreshold: 0
   attachedPartResistances:
-  - 0.5
+  - 0.4
   attachedHitpointPools:
   - {fileID: 260376364}
   bloodAmount: 0
@@ -28974,12 +28974,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   affiliation: 1
-  maxHP: 576
-  HP: 576
+  maxHP: 1440
+  HP: 1440
   ragdollParts: []
   ragdollThreshold: 0
   attachedPartResistances:
-  - 0.7
+  - 0.4
   attachedHitpointPools:
   - {fileID: 260376364}
   bloodAmount: 0
