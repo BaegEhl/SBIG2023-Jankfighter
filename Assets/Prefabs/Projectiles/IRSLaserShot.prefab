@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa1e3e6ede30624a8b7f4d2fade98dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 12
+  baseDamage: 15
   bleedFactor: 1
   affiliation: 1
   xp: 0

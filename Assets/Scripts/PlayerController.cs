@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float bloodNerf;
     public float[] StatModifiers{get{return statUpgradeModifierThings;}}
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         instance = this;
         Application.logMessageReceived += HandleLog;
@@ -256,5 +256,8 @@ public class PlayerController : MonoBehaviour
     }
     public float getBloodFactor(){
         return bloodNerfResist / (bloodNerf + bloodNerfResist);
+    }
+    void OnDestroy(){
+        Application.Quit();
     }
 }

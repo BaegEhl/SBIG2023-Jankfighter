@@ -56,7 +56,8 @@ public class ActiveHitbox : MonoBehaviour
                 GameObject blood = Instantiate(bloodPrefab, transform.position, transform.rotation);
                 float bloodSize = Mathf.Sqrt(Random.Range(1f,5f));
                 blood.GetComponent<Rigidbody2D>().mass *= bloodSize;
-                blood.GetComponent<Rigidbody2D>().AddForce(other.relativeVelocity * bloodSize * Mathf.Max(3, 5 / other.relativeVelocity.magnitude));
+                Vector2 temp = other.relativeVelocity;
+                if(temp != Vector2.zero){blood.GetComponent<Rigidbody2D>().AddForce(temp * bloodSize * Mathf.Max(3, 5 / other.relativeVelocity.magnitude));Debug.Log(temp);}
                 blood.transform.localScale = new Vector3(bloodSize * 0.05f,bloodSize * 0.05f,bloodSize * 0.05f);
                 bloodAmount--;
                 if(bloodAmount <= 0 && HP < 0){

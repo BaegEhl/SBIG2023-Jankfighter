@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 0
+  bleedFactor: 0
   affiliation: 0
   xp: 0
   impactTimer: 4
