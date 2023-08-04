@@ -15364,7 +15364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa1e3e6ede30624a8b7f4d2fade98dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 0.1
+  baseDamage: 1.2
   bleedFactor: 1
   affiliation: 0
   xp: 0
@@ -22239,8 +22239,8 @@ MonoBehaviour:
   recoilFactor: 0.01
   kickFactor: 0.05
   projectilePrefab: {fileID: 6237736463796079154, guid: 0e203bf65c8117949a3d7721ed903afe, type: 3}
-  chargeForce: 400
-  chargeBullets: 0.2
+  chargeForce: 450
+  chargeBullets: 0.25
   chargeRecoil: -2
   shots: 1
   spread: 8
@@ -27327,7 +27327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa1e3e6ede30624a8b7f4d2fade98dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 0.1
+  baseDamage: 0.5
   bleedFactor: 1
   affiliation: 0
   xp: 0
