@@ -20,9 +20,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Image XPbar;
     [SerializeField] private float bloodNerfResist;
     public static PlayerController instance;
-    private float[] statUpgradeModifierThings;
+    [SerializeField] private float[] statUpgradeModifierThings;
     private float xp;
-    private float bloodNerf;
+    [SerializeField] private float bloodNerf;
     public float[] StatModifiers{get{return statUpgradeModifierThings;}}
     // Start is called before the first frame update
     void Start()
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         WeaponSwap();
         PlayerAttack();
         PlayerStance();
-        bloodNerf = Mathf.Max(0,bloodNerf * (1 - 0.1f * Time.deltaTime));
+        bloodNerf = Mathf.Max(0,bloodNerf * (1 - 0.25f * Time.deltaTime));
     }
     void FixedUpdate(){
         MovePlayer();
@@ -225,10 +225,12 @@ public class PlayerController : MonoBehaviour
             case 15:
             statUpgradeModifierThings[9] *= 1.4f;
             break;
+            //+2 body regen, +1 limb regen
             case 16:
             for(int i = 0; i < limbs.Length; i++){limbs[i].modifyStats(1,1);}
             limbs[4].modifyStats(1,1);
             break;
+            //+125 body hp, +50 limb hp
             case 17:
             for(int i = 0; i < limbs.Length; i++){limbs[i].modifyStats(2,50);}
             limbs[4].modifyStats(2,75);
@@ -237,6 +239,7 @@ public class PlayerController : MonoBehaviour
     }
     public void addXP(float amount){
         xp += amount * getBloodFactor();
+        bloodNerf += amount;
         if(xp > nextLevelXP){
             xp = 0;
             nextLevelXP += levelScaling;
