@@ -18,9 +18,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float nextLevelXP;
     [SerializeField] private float levelScaling;
     [SerializeField] private Image XPbar;
+    [SerializeField] private float bloodNerfResist;
     public static PlayerController instance;
     private float[] statUpgradeModifierThings;
     private float xp;
+    private float bloodNerf;
     public float[] StatModifiers{get{return statUpgradeModifierThings;}}
     // Start is called before the first frame update
     void Start()
@@ -36,6 +38,7 @@ public class PlayerController : MonoBehaviour
         WeaponSwap();
         PlayerAttack();
         PlayerStance();
+        bloodNerf = Mathf.Max(0,bloodNerf * (1 - 0.1f * Time.deltaTime));
     }
     void FixedUpdate(){
         MovePlayer();
@@ -49,8 +52,9 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKey(KeyCode.A)){limbRBs[0].AddTorque(-Time.fixedDeltaTime * legSpeed);}
         if(Input.GetKey(KeyCode.Q)){limbRBs[1].AddTorque(-Time.fixedDeltaTime * legSpeed);}
     }
-    //swing the player's arms rapidly with right and left click
+    //swing the player's arms (mostly useless)
     void PlayerArms(){
+        //why are you looking at line 54 of playercontroller
         switch(playerAttackState){
             case 1:
             if(Input.GetKey(KeyCode.R)){limbRBs[2].AddTorque(Time.fixedDeltaTime * armSpeed);}
@@ -62,7 +66,6 @@ public class PlayerController : MonoBehaviour
             break;
         }
     }
-    //why are you looking at line 54 of playercontroller
     //weapon states used to determine what mouse action to take (i.e. which arm to swing or weapon to use)
     void WeaponSwap(){
         if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)){playerAttackState = 1;}
@@ -125,7 +128,11 @@ public class PlayerController : MonoBehaviour
         }
     }
     public void initiateUpgrade(){
+        bloodNerf += 20;
         Time.timeScale = 0;
+        Time.fixedDeltaTime = 0;
+        Physics2D.simulationMode = SimulationMode2D.Script;
+        XPbar.fillAmount = 0;
         List<GameObject> temp = new List<GameObject>();
         GameObject upgrade = upgradeButtons[Random.Range(0,upgradeButtons.Length)];
         upgrade.SetActive(true);
@@ -134,12 +141,15 @@ public class PlayerController : MonoBehaviour
         while(temp.Contains(upgrade)){upgrade = upgradeButtons[Random.Range(0,upgradeButtons.Length)];}
         upgrade.SetActive(true);
         upgrade.transform.localPosition = new Vector2(0,0);
+        temp.Add(upgrade);
         while(temp.Contains(upgrade)){upgrade = upgradeButtons[Random.Range(0,upgradeButtons.Length)];}
         upgrade.SetActive(true);
         upgrade.transform.localPosition = new Vector2(500,0);
     }
     public void selectUpgrade(int option){
         Time.timeScale = 1;
+        Time.fixedDeltaTime = 0.02f;
+        Physics2D.simulationMode = SimulationMode2D.FixedUpdate;
         for(int i = 0; i < upgradeButtons.Length;i++){upgradeButtons[i].SetActive(false);}
         switch(option){
             //+10 blood regen body, +2 limbs
@@ -160,10 +170,11 @@ public class PlayerController : MonoBehaviour
             case 3:
             statUpgradeModifierThings[0] *= 1.35f;
             break;
-            //+40% ranged force, +52% recoil
+            //+40% ranged force, +52% recoil, +20% spread
             case 4:
             statUpgradeModifierThings[1] *= 1.4f;
             statUpgradeModifierThings[2] *= 1.52f;
+            statUpgradeModifierThings[5] *= 1.2f;
             break;
             //+20% force
             case 5:
@@ -202,9 +213,9 @@ public class PlayerController : MonoBehaviour
             case 12:
             legSpeed *= 1.6f;
             break;
-            //+25% arm force
+            //+30% arm force
             case 13:
-            armSpeed *= 1.25f;
+            armSpeed *= 1.3f;
             break;
             //+35% auto fire rate
             case 14:
@@ -214,10 +225,18 @@ public class PlayerController : MonoBehaviour
             case 15:
             statUpgradeModifierThings[9] *= 1.4f;
             break;
+            case 16:
+            for(int i = 0; i < limbs.Length; i++){limbs[i].modifyStats(1,1);}
+            limbs[4].modifyStats(1,1);
+            break;
+            case 17:
+            for(int i = 0; i < limbs.Length; i++){limbs[i].modifyStats(2,50);}
+            limbs[4].modifyStats(2,75);
+            break;
         }
     }
     public void addXP(float amount){
-        xp += amount;
+        xp += amount * getBloodFactor();
         if(xp > nextLevelXP){
             xp = 0;
             nextLevelXP += levelScaling;
@@ -231,5 +250,8 @@ public class PlayerController : MonoBehaviour
     void HandleLog(string logString, string stackTrace, LogType type)
     {
         if(type == LogType.Error){statUpgradeModifierThings[0] *= statUpgradeModifierThings[7];}
+    }
+    public float getBloodFactor(){
+        return bloodNerfResist / (bloodNerf + bloodNerfResist);
     }
 }

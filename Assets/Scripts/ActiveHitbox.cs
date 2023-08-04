@@ -27,7 +27,7 @@ public class ActiveHitbox : MonoBehaviour
             if(affiliation == 0){baseDamage *= PlayerController.instance.StatModifiers[0];}
             float force = other.transform.GetComponent<Rigidbody2D>().mass * other.relativeVelocity.magnitude;
             //Debug.Log(force + " force");
-            if(hb.XP > 0){PlayerController.instance.addXP(hb.XP * Mathf.Sqrt(force));bloodAmount += hb.XP * force * PlayerController.instance.StatModifiers[13];}
+            if(hb.XP > 0){PlayerController.instance.addXP(hb.XP * force);bloodAmount += hb.XP * force * PlayerController.instance.StatModifiers[13];}
             StartCoroutine(takeDamage(baseDamage * force,other));
             for(int i = 0; i < attachedHitpointPools.Length; i++){
                 StartCoroutine(attachedHitpointPools[i].takeDamage(baseDamage * force * attachedPartResistances[i],other));
@@ -38,6 +38,7 @@ public class ActiveHitbox : MonoBehaviour
         }
     }
     public IEnumerator takeDamage(float amount, Collision2D other){
+        if(amount < 0 && affiliation == 0){HP -= amount * PlayerController.instance.getBloodFactor();}
         HP -= amount;
         if(amount > 0.5f && damageIndicatorPrefab != null){
             int damageNumber = Mathf.RoundToInt(amount);
@@ -49,7 +50,7 @@ public class ActiveHitbox : MonoBehaviour
         }
         if(HP > maxHP){HP = maxHP;}
         if(amount > 0 && bloodAmount > 0){
-            int percent = Mathf.CeilToInt((amount / maxHP) * bloodAmount);
+            int percent = Mathf.CeilToInt((amount / maxHP) * bloodAmount * other.gameObject.GetComponent<AttackHitbox>().BleedFactor);
             for(int i = 0; i < percent; i++){
                 if(healthbar != null){healthbar.fillAmount -= ((amount / maxHP) / (float)percent);}
                 GameObject blood = Instantiate(bloodPrefab, transform.position, transform.rotation);
@@ -122,7 +123,7 @@ public class ActiveHitbox : MonoBehaviour
                 float bloodSize = Mathf.Sqrt(Random.Range(1f,5f));
                 blood.GetComponent<Rigidbody2D>().mass *= bloodSize;
                 blood.transform.localScale = new Vector3(bloodSize * 0.05f,bloodSize * 0.05f,bloodSize * 0.05f);
-                blood.GetComponent<Rigidbody2D>().AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * 100);
+                blood.GetComponent<Rigidbody2D>().AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * 10 * PlayerController.instance.StatModifiers[3]);
                 bloodAmount--;
             }
         }

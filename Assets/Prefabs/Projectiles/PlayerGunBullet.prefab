@@ -48,7 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 15
+  bleedFactor: 1
   affiliation: 0
+  xp: 0
   impactTimer: 1
 --- !u!50 &-506831911123276568
 Rigidbody2D:

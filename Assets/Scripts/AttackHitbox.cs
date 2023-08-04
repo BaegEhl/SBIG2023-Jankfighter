@@ -6,6 +6,8 @@ public class AttackHitbox : MonoBehaviour
 {
     [SerializeField] protected float baseDamage;
     public float BaseDamage{get{return baseDamage;}}
+    [SerializeField] protected float bleedFactor = 1;
+    public float BleedFactor{get{return bleedFactor;}}
     [SerializeField] protected int affiliation;
     public int Affiliation{get{return affiliation;}}
     [SerializeField] protected float xp;

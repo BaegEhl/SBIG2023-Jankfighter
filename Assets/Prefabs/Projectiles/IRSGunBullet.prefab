@@ -121,7 +121,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 8
+  bleedFactor: 1
   affiliation: 1
+  xp: 0
   impactTimer: 0.5
 --- !u!61 &-2334926586563454911
 BoxCollider2D:

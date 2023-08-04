@@ -48,7 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 5
+  bleedFactor: 1
   affiliation: -1
+  xp: 0
   impactTimer: 0.5
 --- !u!212 &9115505085811760647
 SpriteRenderer:
