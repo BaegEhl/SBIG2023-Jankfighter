@@ -185,6 +185,8 @@ MonoBehaviour:
   bloodAmount: 432
   healthbar: {fileID: 0}
   damageIndicatorPrefab: {fileID: 0}
+  bloodRegen: 0
+  healthRegen: 0
   bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
 --- !u!1 &2798986561173762514
 GameObject:
@@ -371,6 +373,8 @@ MonoBehaviour:
   bloodAmount: 388
   healthbar: {fileID: 0}
   damageIndicatorPrefab: {fileID: 0}
+  bloodRegen: 0
+  healthRegen: 0
   bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
 --- !u!1 &2798986561178319283
 GameObject:
@@ -401,14 +405,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2798986561178319283}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -0.85, y: -1.225, z: 0}
-  m_LocalScale: {x: 0.2, y: 2, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.825, y: -1.225, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2798986561389053144}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &2798986561178319289
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -450,7 +454,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1e369db6d2b4d7d42bf6350330201edb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -496,7 +500,7 @@ HingeJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: -0.5, y: 0}
+  m_Anchor: {x: 0, y: -0.5}
   m_ConnectedAnchor: {x: -0.040064003, y: -0.9861216}
   m_UseMotor: 0
   m_Motor:
@@ -519,18 +523,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 20.63, y: 1.8836963}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 20.5, y: 1.4}
   m_EdgeRadius: 0
 --- !u!114 &2798986561178319292
 MonoBehaviour:
@@ -562,7 +566,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 1
+  bleedFactor: 1
   affiliation: 1
+  xp: 0
   impactTimer: -1
 --- !u!1 &2798986561389053151
 GameObject:
@@ -753,6 +759,8 @@ MonoBehaviour:
   bloodAmount: 824
   healthbar: {fileID: 0}
   damageIndicatorPrefab: {fileID: 0}
+  bloodRegen: 0
+  healthRegen: 0
   bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
 --- !u!1 &2798986562335218877
 GameObject:
@@ -939,6 +947,8 @@ MonoBehaviour:
   bloodAmount: 432
   healthbar: {fileID: 0}
   damageIndicatorPrefab: {fileID: 0}
+  bloodRegen: 0
+  healthRegen: 0
   bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
 --- !u!1 &2798986562671998430
 GameObject:
@@ -969,8 +979,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2798986562671998430}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.25, y: -1.225, z: 0}
-  m_LocalScale: {x: 1, y: 0.2, z: 1}
+  m_LocalPosition: {x: 1.15, y: -1.225, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2798986561389053144}
@@ -1017,7 +1027,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 17c766e8f5994ca43b5213686b654527, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1063,8 +1073,8 @@ HingeJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: -0.5, y: 0}
-  m_ConnectedAnchor: {x: 0.040062815, y: -0.9861216}
+  m_Anchor: {x: -2.2, y: 0.25}
+  m_ConnectedAnchor: {x: -0.056349337, y: -0.85951895}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1086,18 +1096,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 5.62, y: 1.88}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 5.7, y: 1.6}
   m_EdgeRadius: 0
 --- !u!114 &2798986562671998424
 MonoBehaviour:
@@ -1308,6 +1318,8 @@ MonoBehaviour:
   bloodAmount: 388
   healthbar: {fileID: 0}
   damageIndicatorPrefab: {fileID: 0}
+  bloodRegen: 0
+  healthRegen: 0
   bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
 --- !u!1 &2798986562779123036
 GameObject:
@@ -1493,6 +1505,8 @@ MonoBehaviour:
   bloodAmount: 1080
   healthbar: {fileID: 0}
   damageIndicatorPrefab: {fileID: 7371930013006180728, guid: 9e429ce2ff50da240a5b5970cf5e66de, type: 3}
+  bloodRegen: 0
+  healthRegen: 0
   bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
 --- !u!114 &2798986562779123038
 MonoBehaviour:

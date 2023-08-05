@@ -9910,7 +9910,7 @@ MonoBehaviour:
   weaponForce: -40
   altfireMultiplier: -7.5
   weaponRB: {fileID: 576410966}
-  recoilFactor: -0.5
+  recoilFactor: 0.5
   kickFactor: 0.2
   maxAmmo: 12
   reloadAmount: 6
@@ -13263,7 +13263,7 @@ MonoBehaviour:
   weaponForce: -48
   altfireMultiplier: -6
   weaponRB: {fileID: 807341532}
-  recoilFactor: -0.25
+  recoilFactor: 0.25
   kickFactor: 0.035
   maxAmmo: 12
   fireRate: 0.05
@@ -29225,7 +29225,7 @@ MonoBehaviour:
   weaponForce: -90
   altfireMultiplier: -4
   weaponRB: {fileID: 2047185486}
-  recoilFactor: -0.25
+  recoilFactor: 0.25
   kickFactor: 0.25
   maxAmmo: 7
   reloadAmount: 1
