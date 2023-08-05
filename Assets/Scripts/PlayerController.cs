@@ -167,9 +167,9 @@ public class PlayerController : MonoBehaviour
             statUpgradeModifierThings[10]++;
             statUpgradeModifierThings[13] += 0.65f;
             break;
-            //+1 blood damage
+            //+4 blood damage
             case 2:
-            statUpgradeModifierThings[11]++;
+            statUpgradeModifierThings[11] += 4;
             break;
             //+35% damage
             case 3:
@@ -205,10 +205,10 @@ public class PlayerController : MonoBehaviour
             case 9:
             statUpgradeModifierThings[12]--;
             break;
-            //+15% limb force
+            //+35% limb force
             case 10:
-            armSpeed *= 1.15f;
-            legSpeed *= 1.15f;
+            armSpeed *= 1.35f;
+            legSpeed *= 1.35f;
             break;
             //+0.1% damage per error
             case 11:
@@ -218,9 +218,9 @@ public class PlayerController : MonoBehaviour
             case 12:
             legSpeed *= 1.6f;
             break;
-            //+30% arm force
+            //+45% arm force
             case 13:
-            armSpeed *= 1.3f;
+            armSpeed *= 1.45f;
             break;
             //+35% auto fire rate
             case 14:
@@ -230,10 +230,10 @@ public class PlayerController : MonoBehaviour
             case 15:
             statUpgradeModifierThings[9] *= 1.4f;
             break;
-            //+2 body regen, +1 limb regen
+            //+5 body regen, +2 limb regen
             case 16:
-            for(int i = 0; i < limbs.Length; i++){limbs[i].modifyStats(1,1);}
-            limbs[4].modifyStats(1,1);
+            for(int i = 0; i < limbs.Length; i++){limbs[i].modifyStats(1,2);}
+            limbs[4].modifyStats(1,3);
             break;
             //+125 body hp, +50 limb hp
             case 17:
