@@ -1075,7 +1075,7 @@ MonoBehaviour:
   spread: 0
   shootNoise: {fileID: 8300000, guid: 2d5c9af38b8704f428b8e6f34ef4621a, type: 3}
   reloadNoise: {fileID: 8300000, guid: 7dfe44fbf9a9b234ba8533c2afc1a82b, type: 3}
-  shootVolume: 0.4
+  shootVolume: 0.25
 --- !u!61 &4969679468688262169
 BoxCollider2D:
   m_ObjectHideFlags: 0
