@@ -12,13 +12,20 @@ public class ChargedRanged : Weapon
     [SerializeField] private float chargeRecoil;
     [SerializeField] private float shots;
     [SerializeField] private float spread;
+    [SerializeField] private AudioClip shootNoise;
+    [SerializeField] private AudioSource source;
+    void Awake(){source.Pause();}
     public override IEnumerator UseWeapon()
     {
+        source.UnPause();
+        //source.mute = false;
         float timer = 0;
         while(Input.GetMouseButton(0)){
             timer += Time.deltaTime * PlayerController.instance.StatModifiers[6];
             yield return new WaitForEndOfFrame();
         }
+        source.Pause();
+        PlayerController.source.PlayOneShot(shootNoise, timer / (timer + 10));
         for(int i = 0; i < shots + Mathf.RoundToInt(chargeBullets * timer); i++){
             weaponRB.AddForce(transform.right.normalized * (-weaponForce * recoilFactor + chargeRecoil * timer) * PlayerController.instance.StatModifiers[3] * PlayerController.instance.StatModifiers[2] * PlayerController.instance.StatModifiers[1]);
             weaponRB.AddTorque((-weaponForce * recoilFactor + chargeRecoil * timer) * Random.Range(-kickFactor,kickFactor) * PlayerController.instance.StatModifiers[3] * PlayerController.instance.StatModifiers[2] * PlayerController.instance.StatModifiers[1]);

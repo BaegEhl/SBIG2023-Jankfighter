@@ -453,6 +453,8 @@ MonoBehaviour:
   playerWeapon: 0
   gravityFactor: 0
   spread: 0
+  shootNoise: {fileID: 0}
+  reloadNoise: {fileID: 0}
 --- !u!1 &32914928
 GameObject:
   m_ObjectHideFlags: 0
@@ -4273,6 +4275,9 @@ MonoBehaviour:
   affiliation: 0
   xp: 0
   impactTimer: -1
+  impactNoise: {fileID: 0}
+  mPipeFactor: 0
+  mPipeMinimum: 0.1
 --- !u!61 &257026718
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6916,6 +6921,9 @@ MonoBehaviour:
   affiliation: 0
   xp: 0
   impactTimer: -1
+  impactNoise: {fileID: 0}
+  mPipeFactor: 0
+  mPipeMinimum: 0.1
 --- !u!61 &415322677
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7707,6 +7715,8 @@ MonoBehaviour:
   chargeRecoil: -6
   shots: 3
   spread: 20
+  shootNoise: {fileID: 0}
+  source: {fileID: 0}
 --- !u!61 &463085854
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10055,6 +10065,8 @@ MonoBehaviour:
   playerWeapon: 1
   gravityFactor: 0
   spread: 12
+  shootNoise: {fileID: 0}
+  reloadNoise: {fileID: 0}
 --- !u!61 &576410964
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10540,6 +10552,7 @@ GameObject:
   - component: {fileID: 611025206}
   - component: {fileID: 611025212}
   - component: {fileID: 611025211}
+  - component: {fileID: 611025213}
   m_Layer: 3
   m_Name: PlayerRailcannonR
   m_TagString: Untagged
@@ -10585,6 +10598,8 @@ MonoBehaviour:
   chargeRecoil: -200
   shots: 1
   spread: 0
+  shootNoise: {fileID: 8300000, guid: 2d5c9af38b8704f428b8e6f34ef4621a, type: 3}
+  source: {fileID: 611025213}
 --- !u!61 &611025207
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10760,6 +10775,102 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 12.5, y: 1}
   m_EdgeRadius: 0
+--- !u!82 &611025213
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611025204}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 7885acdc6cf1068488aa55b65d2c248f, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &612116102
 GameObject:
   m_ObjectHideFlags: 0
@@ -13406,6 +13517,8 @@ MonoBehaviour:
   fireRate: 0.05
   reloadTime: 1.2
   projectilePrefab: {fileID: 6901619526177981350, guid: 2bc171029fe3c0648b898e8950833e6d, type: 3}
+  reloadNoise: {fileID: 8300000, guid: 7dfe44fbf9a9b234ba8533c2afc1a82b, type: 3}
+  shootNoise: {fileID: 8300000, guid: eb0f8e2729e41744e97a514c4fb12bff, type: 3}
 --- !u!61 &807341530
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15031,6 +15144,7 @@ GameObject:
   - component: {fileID: 976994274}
   - component: {fileID: 976994275}
   - component: {fileID: 976994276}
+  - component: {fileID: 976994277}
   m_Layer: 3
   m_Name: PlayerTorso
   m_TagString: Player
@@ -15294,6 +15408,102 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
+--- !u!82 &976994277
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976994268}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &988076605
 GameObject:
   m_ObjectHideFlags: 0
@@ -16278,6 +16488,9 @@ MonoBehaviour:
   affiliation: 0
   xp: 0
   impactTimer: -1
+  impactNoise: {fileID: 0}
+  mPipeFactor: 0
+  mPipeMinimum: 0.1
 --- !u!61 &1066513924
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18682,6 +18895,8 @@ MonoBehaviour:
   playerWeapon: 0
   gravityFactor: 0
   spread: 0
+  shootNoise: {fileID: 0}
+  reloadNoise: {fileID: 0}
 --- !u!1 &1252337995
 GameObject:
   m_ObjectHideFlags: 0
@@ -18885,6 +19100,8 @@ MonoBehaviour:
   fireRate: 0.125
   reloadTime: 5
   projectilePrefab: {fileID: 5519292606867440905, guid: 91f2775b73158b843b116e998334ea24, type: 3}
+  reloadNoise: {fileID: 8300000, guid: cffe8197c0f60df4b9498f09b69373cb, type: 3}
+  shootNoise: {fileID: 8300000, guid: eb0f8e2729e41744e97a514c4fb12bff, type: 3}
 --- !u!61 &1252672851
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21843,6 +22060,9 @@ MonoBehaviour:
   affiliation: 0
   xp: 0
   impactTimer: -1
+  impactNoise: {fileID: 0}
+  mPipeFactor: 0
+  mPipeMinimum: 0.1
 --- !u!61 &1516707051
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21923,6 +22143,9 @@ MonoBehaviour:
   affiliation: 0
   xp: 0
   impactTimer: -1
+  impactNoise: {fileID: 0}
+  mPipeFactor: 0
+  mPipeMinimum: 0.1
 --- !u!61 &1524094539
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22918,6 +23141,9 @@ MonoBehaviour:
   affiliation: 0
   xp: 0
   impactTimer: -1
+  impactNoise: {fileID: 0}
+  mPipeFactor: 0
+  mPipeMinimum: 0.1
 --- !u!58 &1633044652
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -23327,6 +23553,8 @@ MonoBehaviour:
   chargeRecoil: -2
   shots: 1
   spread: 8
+  shootNoise: {fileID: 0}
+  source: {fileID: 0}
 --- !u!1 &1694236802
 GameObject:
   m_ObjectHideFlags: 0
@@ -28662,6 +28890,9 @@ MonoBehaviour:
   affiliation: 0
   xp: 0
   impactTimer: -1
+  impactNoise: {fileID: 0}
+  mPipeFactor: 0
+  mPipeMinimum: 0.1
 --- !u!61 &2007448810
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29315,6 +29546,8 @@ MonoBehaviour:
   playerWeapon: 0
   gravityFactor: 0
   spread: 0
+  shootNoise: {fileID: 0}
+  reloadNoise: {fileID: 0}
 --- !u!1 &2047185481
 GameObject:
   m_ObjectHideFlags: 0
@@ -29376,6 +29609,8 @@ MonoBehaviour:
   playerWeapon: 1
   gravityFactor: 0
   spread: 0
+  shootNoise: {fileID: 0}
+  reloadNoise: {fileID: 0}
 --- !u!61 &2047185484
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30662,6 +30897,9 @@ MonoBehaviour:
   affiliation: 0
   xp: 0
   impactTimer: -1
+  impactNoise: {fileID: 0}
+  mPipeFactor: 0
+  mPipeMinimum: 0.1
 --- !u!61 &2133430954
 BoxCollider2D:
   m_ObjectHideFlags: 0

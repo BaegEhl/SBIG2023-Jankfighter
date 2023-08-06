@@ -29,12 +29,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject text;
     [SerializeField] private Slider slider;
     public float[] StatModifiers{get{return statUpgradeModifierThings;}}
+    public static AudioSource source;
     // Start is called before the first frame update
     void Awake()
     {
         instance = this;
         Application.logMessageReceived += HandleLog;
         statUpgradeModifierThings = new float[]{1,1,1,1,1,1,1,1,1,1,0,0,0,0};
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

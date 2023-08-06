@@ -15,10 +15,13 @@ public class SemiRanged : Weapon
     [SerializeField] private float spread;
     private int ammo = 0;
     private bool isReloading = false;
+    [SerializeField] private AudioClip shootNoise;
+    [SerializeField] private AudioClip reloadNoise;
     public override IEnumerator UseWeapon()
     {
         if(playerWeapon){
             if(ammo > 0 && !isReloading){
+                PlayerController.source.PlayOneShot(shootNoise);
                 for(int i = 0; i < projectileCount; i++){
                     weaponRB.AddForce(transform.right.normalized * -weaponForce * recoilFactor * PlayerController.instance.StatModifiers[3] * PlayerController.instance.StatModifiers[2] * PlayerController.instance.StatModifiers[1]);
                     weaponRB.AddTorque(weaponForce * recoilFactor * Random.Range(-kickFactor,kickFactor) * PlayerController.instance.StatModifiers[3] * PlayerController.instance.StatModifiers[2] * PlayerController.instance.StatModifiers[1]);
@@ -30,6 +33,7 @@ public class SemiRanged : Weapon
                 }
             }
             else{
+                PlayerController.source.PlayOneShot(reloadNoise);
                 ammo += reloadAmount;
                 if(ammo >= maxAmmo){ammo = maxAmmo; isReloading = false;}
                 else{isReloading = true;}
@@ -38,6 +42,7 @@ public class SemiRanged : Weapon
         }
         else{
             if(ammo > 0 && !isReloading){
+                if(shootNoise != null){PlayerController.source.PlayOneShot(shootNoise);}
                 for(int i = 0; i < projectileCount; i++){
                     weaponRB.AddForce(transform.right.normalized * -weaponForce * recoilFactor);
                     weaponRB.AddTorque(weaponForce * recoilFactor * Random.Range(-kickFactor,kickFactor));
@@ -48,6 +53,7 @@ public class SemiRanged : Weapon
                 }
             }
             else{
+                if(reloadNoise != null){PlayerController.source.PlayOneShot(reloadNoise);}
                 ammo += reloadAmount;
                 if(ammo >= maxAmmo){ammo = maxAmmo; isReloading = false;}
                 else{isReloading = true;}
