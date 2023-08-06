@@ -104,6 +104,9 @@ MonoBehaviour:
   affiliation: 1
   xp: 0
   impactTimer: 0.1
+  impactNoise: {fileID: 8300000, guid: d75ff6ad1628ae94dbcf197bd0dff4ff, type: 3}
+  mPipeFactor: 10
+  mPipeMinimum: 0.05
 --- !u!50 &5100936885765085818
 Rigidbody2D:
   serializedVersion: 4

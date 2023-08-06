@@ -19,7 +19,7 @@ public class AttackHitbox : MonoBehaviour
     public static int deleted;
     void OnCollisionEnter2D(Collision2D other){
         float mag;
-        if(impactNoise != null && (mag = other.relativeVelocity.magnitude * GetComponent<Rigidbody2D>().mass) > mPipeMinimum){PlayerController.source.PlayOneShot(impactNoise, mag / (mag + mPipeFactor));}
+        if(PlayerController.metalPipeocalypse && impactNoise != null && (mag = other.relativeVelocity.magnitude * GetComponent<Rigidbody2D>().mass) > mPipeMinimum){PlayerController.source.PlayOneShot(impactNoise, mag / (mag + mPipeFactor));}
         if(impactTimer >= 0 /*&& (!other.transform.GetComponent<ActiveHitbox>() || other.transform.GetComponent<ActiveHitbox>().Affiliation != affiliation)*/){
             StartCoroutine(startImpactTimer());
         }

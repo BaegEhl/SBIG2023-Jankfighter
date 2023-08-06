@@ -125,6 +125,9 @@ MonoBehaviour:
   affiliation: 1
   xp: 0
   impactTimer: 0.5
+  impactNoise: {fileID: 8300000, guid: d75ff6ad1628ae94dbcf197bd0dff4ff, type: 3}
+  mPipeFactor: 30
+  mPipeMinimum: 0.2
 --- !u!61 &-2334926586563454911
 BoxCollider2D:
   m_ObjectHideFlags: 0

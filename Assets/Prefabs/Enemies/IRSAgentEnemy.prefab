@@ -188,6 +188,7 @@ MonoBehaviour:
   bloodRegen: 0
   healthRegen: 0
   bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
+  source: {fileID: 312610342912785298}
 --- !u!1 &2748247771982481194
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,6 +377,7 @@ MonoBehaviour:
   bloodRegen: 0
   healthRegen: 0
   bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
+  source: {fileID: 312610342912785298}
 --- !u!1 &2748247772111014413
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,6 +561,8 @@ MonoBehaviour:
   playerWeapon: 0
   gravityFactor: 0.2
   spread: 0
+  shootNoise: {fileID: 8300000, guid: eb0f8e2729e41744e97a514c4fb12bff, type: 3}
+  reloadNoise: {fileID: 0}
 --- !u!1 &2748247772561981527
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,6 +716,7 @@ MonoBehaviour:
   bloodRegen: 0
   healthRegen: 0
   bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
+  source: {fileID: 312610342912785298}
 --- !u!1 &2748247772690684862
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,6 +905,7 @@ MonoBehaviour:
   bloodRegen: 0
   healthRegen: 0
   bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
+  source: {fileID: 312610342912785298}
 --- !u!1 &2748247772702658762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,6 +1128,8 @@ MonoBehaviour:
   playerWeapon: 0
   gravityFactor: 0.1
   spread: 0
+  shootNoise: {fileID: 8300000, guid: eb0f8e2729e41744e97a514c4fb12bff, type: 3}
+  reloadNoise: {fileID: 0}
 --- !u!1 &2748247773013632062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,6 +1145,7 @@ GameObject:
   - component: {fileID: 2748247773013632052}
   - component: {fileID: 2748247773013632053}
   - component: {fileID: 2748247773013632054}
+  - component: {fileID: 312610342912785298}
   m_Layer: 6
   m_Name: IRSTorso
   m_TagString: Untagged
@@ -1309,6 +1318,7 @@ MonoBehaviour:
   bloodRegen: 0
   healthRegen: 0
   bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
+  source: {fileID: 312610342912785298}
 --- !u!114 &2748247773013632054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1345,6 +1355,102 @@ MonoBehaviour:
   - 0
   - 0
   legPower: -500
+--- !u!82 &312610342912785298
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2748247773013632062}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d75ff6ad1628ae94dbcf197bd0dff4ff, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2748247773378665363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1533,3 +1639,4 @@ MonoBehaviour:
   bloodRegen: 0
   healthRegen: 0
   bloodPrefab: {fileID: 7638410876171220606, guid: 6530469b3f1597c49a15af16f3a5b5a7, type: 3}
+  source: {fileID: 312610342912785298}

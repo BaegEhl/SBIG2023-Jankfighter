@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Slider slider;
     public float[] StatModifiers{get{return statUpgradeModifierThings;}}
     public static AudioSource source;
+    public static bool metalPipeocalypse = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -271,4 +272,5 @@ public class PlayerController : MonoBehaviour
         lagTolerance = slider.value;
         text.GetComponent<TextMeshProUGUI>().text = (lagTolerance.ToString());
     }
+    public void earshredderMode(){metalPipeocalypse = true;}
 }

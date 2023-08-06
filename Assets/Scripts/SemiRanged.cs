@@ -17,11 +17,12 @@ public class SemiRanged : Weapon
     private bool isReloading = false;
     [SerializeField] private AudioClip shootNoise;
     [SerializeField] private AudioClip reloadNoise;
+    [SerializeField] private float shootVolume = 1;
     public override IEnumerator UseWeapon()
     {
         if(playerWeapon){
             if(ammo > 0 && !isReloading){
-                PlayerController.source.PlayOneShot(shootNoise);
+                PlayerController.source.PlayOneShot(shootNoise, shootVolume);
                 for(int i = 0; i < projectileCount; i++){
                     weaponRB.AddForce(transform.right.normalized * -weaponForce * recoilFactor * PlayerController.instance.StatModifiers[3] * PlayerController.instance.StatModifiers[2] * PlayerController.instance.StatModifiers[1]);
                     weaponRB.AddTorque(weaponForce * recoilFactor * Random.Range(-kickFactor,kickFactor) * PlayerController.instance.StatModifiers[3] * PlayerController.instance.StatModifiers[2] * PlayerController.instance.StatModifiers[1]);
@@ -42,7 +43,7 @@ public class SemiRanged : Weapon
         }
         else{
             if(ammo > 0 && !isReloading){
-                if(shootNoise != null){PlayerController.source.PlayOneShot(shootNoise);}
+                if(shootNoise != null){PlayerController.source.PlayOneShot(shootNoise, shootVolume);}
                 for(int i = 0; i < projectileCount; i++){
                     weaponRB.AddForce(transform.right.normalized * -weaponForce * recoilFactor);
                     weaponRB.AddTorque(weaponForce * recoilFactor * Random.Range(-kickFactor,kickFactor));

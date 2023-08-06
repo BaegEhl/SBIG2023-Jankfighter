@@ -25,7 +25,7 @@ public class ChargedRanged : Weapon
             yield return new WaitForEndOfFrame();
         }
         source.Pause();
-        PlayerController.source.PlayOneShot(shootNoise, timer / (timer + 10));
+        PlayerController.source.PlayOneShot(shootNoise, Mathf.Max(timer / (timer + 10), 0.05f));
         for(int i = 0; i < shots + Mathf.RoundToInt(chargeBullets * timer); i++){
             weaponRB.AddForce(transform.right.normalized * (-weaponForce * recoilFactor + chargeRecoil * timer) * PlayerController.instance.StatModifiers[3] * PlayerController.instance.StatModifiers[2] * PlayerController.instance.StatModifiers[1]);
             weaponRB.AddTorque((-weaponForce * recoilFactor + chargeRecoil * timer) * Random.Range(-kickFactor,kickFactor) * PlayerController.instance.StatModifiers[3] * PlayerController.instance.StatModifiers[2] * PlayerController.instance.StatModifiers[1]);

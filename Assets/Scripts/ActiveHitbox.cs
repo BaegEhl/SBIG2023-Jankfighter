@@ -20,6 +20,7 @@ public class ActiveHitbox : MonoBehaviour
     [SerializeField] private float bloodRegen;
     [SerializeField] private float healthRegen;
     [SerializeField] private GameObject bloodPrefab;
+    [SerializeField] private AudioSource source;
     void OnCollisionEnter2D(Collision2D other){
         if(other.transform.GetComponent<AttackHitbox>() && other.transform.GetComponent<AttackHitbox>().Affiliation != affiliation){
             AttackHitbox hb = other.transform.GetComponent<AttackHitbox>();
@@ -86,6 +87,7 @@ public class ActiveHitbox : MonoBehaviour
         Destroy(gameObject);
     }
     public IEnumerator ragdollify(float force){
+        if(!source.isPlaying){source.Play();}
         float realRagdollHours = force - (ragdollThreshold * gameObject.GetComponent<Rigidbody2D>().mass);
         //Debug.Log("ragdolled");
         foreach(Rigidbody2D rb in ragdollParts){

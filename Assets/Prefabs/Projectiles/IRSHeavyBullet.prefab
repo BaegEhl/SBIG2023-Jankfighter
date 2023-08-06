@@ -151,3 +151,6 @@ MonoBehaviour:
   affiliation: -1
   xp: 0
   impactTimer: 1.5
+  impactNoise: {fileID: 8300000, guid: d75ff6ad1628ae94dbcf197bd0dff4ff, type: 3}
+  mPipeFactor: 80
+  mPipeMinimum: 10
